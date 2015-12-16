@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Node.JS Tutorial</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Open+Sans);
+
+body { font-family: 'Open Sans Condensed','Droid Serif','Open Sans', sans-serif; }
+h1, h2, h3, h4 {
+    font-family: 'Yanone Kaffeesatz';
+    font-weight: 400;
+    margin-bottom: 0;
+    margin-top: 10px;
+}
+h1 { font-size: 3.5em; }
+h2 { font-size: 3em; }
+h3 { font-size: 1.6em; }
+h4 { font-size: 1em; }
+.inverse {
+    background: #272822;
+    color: #777872;
+    text-shadow: 0 0 20px #333;
+}
+.inverse h1, .inverse h2 {
+    color: #f3f3f3;
+    line-height: 0.8em;
+}
+
+code { font-family: 'Ubuntu Mono', sans-serif !important; }
+pre code { background-color: #fff; border-top: 5px solid #ddd; border-bottom: 5px solid #ddd; margin-top: 10px;}
+h1 code { font-weight: 300; font-size: 1em !important; background-color: #eee; padding: 0px 5px; border-radius: 5px; }
+
+a {
+    color: #F92672;
+    text-decoration: none;
+}
+.task {
+    float: right;
+    font-size: 0.9em;
+    padding-top: 0.6em;
+}
+.task a {
+    color: #080;
+    text-decoration: none;
+}
+.right {
+    float: right;
+    margin-left: 1em;
+}
+.pushdown {
+    margin-top: 12em;
+}
+
+.done-true {
+  text-decoration: line-through;
+  color: grey;
+}
+
+ul.unstyled,ol.unstyled{margin-left:0;list-style:none;}
+
+.remark-visible .remark-slide-scaler {
+  overflow-y: auto;
+}
+
+.nopadding { padding:0 !important;}
+
+.red    { color: #FF4943; }
+.gray   { color: #787878; }
+.green  { color: #87A558; }
+.blue   { color: #41C8F0; }
+.yellow { color: #DBEC62; }
+.white  { color: #FFFFFF; }
+.or1 {color: #FFD740;}
+.bluelight {color: #B3E5FC;}
+.dark1 {color: #B6B6B6;}
+
+.bold { font-weight: bold; }
+
+pre {
+  background-color: transparent ; 
+  border: 0 ; 
+  border-radius: 0 ;
+  padding: 10px 0; 
+}
+.remark-code {
+  font-size: 14px;
+  line-height: 1.25;
+}
+
+.remark-code-line-highlighted {
+  font-weight: bold;
+  background-color: transparent;
+  text-shadow: 
+      0px 10px 30px rgba(255, 98, 20, .5),
+      10px 0px 30px rgba(255, 98, 20, .5),
+      -10px 0px 30px rgba(255, 98, 20, .5),
+      0px -10px 30px rgba(255, 98, 20, .5);
+}
+.reverse .remark-code-line-highlighted {
+    font-weight: normal !important;
+    color: transparent;
+    text-shadow: 0 0 5px #000;
+    font-size: 1em;
+}
+.reverse .remark-code-line { font-weight: bold; }
+
+.shade {
+    padding: 0;
+}
+
+.shade  {
+    background-color:rgba(0,0,0,0.7);
+    color: white;
+    width: 100%;
+    padding: 1em 0;
+}
+
+.shadelight  {
+    background-color:rgba(0,0,0,0.5);
+    color: white;
+    width: 100%;
+    padding: 0;
+}
+
+.fgtransparent h1 {
+  color:rgba(255,255,255,0.8) !important;
+  text-shadow: none;
+}
+
+.nosplit>div:first-of-type {width: 100%; height:100%; float:left; }
+.split-30>div:first-of-type {width: 30%; height:100%; float:left; }
+.split-30>div:nth-of-type(2) {width: 70%; height:100%; float:right;}
+.split-50>div:first-of-type {width: 50%; height:100%; float:left; }
+.split-50>div:nth-of-type(2) {width: 50%; height:100%; float:right;}
+.column_t1 {
+  background-color: #2aa9df;
+  color: white;
+}
+.column_t1 a {color: #B3E5FC;}
+.column_t1 pre code {
+  -webkit-box-shadow: 0px 0px 55px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 55px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 55px 0px rgba(0,0,0,0.75);  
+}
+.column_t2 {
+}
+
+.uline {text-decoration: underline;}
+
+.vmiddle {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  padding:1em;
+}
+.pushfront {
+    z-index: 2;   
+}
+.remark-slide-content .vmiddle h1 {margin-top: 0;}
+
+.boxtitle1 {
+  padding:1em;
+  text-align: left;
+  border-left: white solid 0.5em;
+  border-right: white solid 0em;
+}
+
+.figplain img {
+  width: 100%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-top: #eee solid 20px;
+  border-bottom: #eee solid 20px;
+}
+.noborder img {border:none !important;}
+
+.figstyle1 img {
+  -webkit-box-shadow: 0px 0px 55px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 55px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 55px 0px rgba(0,0,0,0.75);  
+  width: 100%;
+}
+.figstyle1h img {
+  -webkit-box-shadow: 0px 0px 55px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 55px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 55px 0px rgba(0,0,0,0.75);  
+  max-width: 100%;
+  max-height: 600px;
+}
+.figstyle1h {}
+
+.tab1 table {
+  background: rgba(255, 255, 255, 0.12);
+  border: 4px solid #eeeeee;
+  margin: 0px auto;
+  border-collapse:collapse;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15); }
+
+.tab1 table td, .tab1 table th {
+  border: 1px solid white;
+  padding: 0.25em 1em;
+  }
+
+.tab1 table th {
+  opacity: 1;
+  background-color:#ff6600;
+  vertical-align:middle;
+} 
+.fullwidth, .fullwidth table {width: 100% !important;}
+.fullheight {max-height: 100% !important;}
+
+.tab2 table {
+  background: rgba(255, 255, 255, 0.12);
+  border: 4px solid #eeeeee;
+  margin: 0px auto;
+  border-collapse:collapse;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15); }
+
+.tab2 table td, .tab2 table th {
+  border: 1px solid #eee;
+  padding: 0.25em 1em;
+  }
+
+.tab2 table th {
+  opacity: 1;
+  background-color:#ff6600;
+  vertical-align:middle;
+}  
+.fonth2 {font-size: 3em;}
+
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://eueung.github.io/EL5244/mfizz22/font-mfizz.css">
+  </head>
+  <body>
+    <textarea id="source">
+
+
+class: split-30 nopadding
+background-image: url(https://cloud.githubusercontent.com/assets/4231611/11557579/f6e2c82a-99df-11e5-999b-a616878f9ef7.jpg)
+
+.column_t2.center[.vmiddle[
+.fgtransparent[
+#<i class="icon-javascript fa-4x"></i>
+]
+]]
+.column_t2[.vmiddle.nopadding[
+.shadelight[.boxtitle1[
+# Node.JS - Basics
+
+### [Eueung Mulyana](https://github.com/eueung)
+### http://eueung.github.io/js/node-basics
+#### JS CodeLabs | [Attribution-ShareAlike CC BY-SA](https://creativecommons.org/licenses/by-sa/4.0/)
+#### 
+]]
+]]
+
+
+---
+class: column_t1 middle
+
+.fonth2[
+.tab1.fullwidth[
+| Agenda   |
+|:-------------:|
+| Checklist |
+| Node Basics |
+]]
+
+---
+class: split-30 nopadding
+background-image: url(https://cloud.githubusercontent.com/assets/4231611/11557579/f6e2c82a-99df-11e5-999b-a616878f9ef7.jpg)
+
+.column_t2.center[.vmiddle[
+.fgtransparent[
+# <i class="icon-javascript fa-4x"></i>
+]
+]]
+.column_t2[.vmiddle.nopadding[
+.shadelight[.boxtitle1[
+# Checklist
+#### 
+]]
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t2[.vmiddle[
+
+```
+SET nodejsVersion=5.2.0
+SET nodejsArch=x64
+```
+.center[nodejs-portable (admin)]
+
+```
+set PATH=%APPDATA%\npm;%~dp0;%PATH%
+*set PYTHON=f:\prog\py27\python.exe
+```
+.center[nodevars]
+
+```
+npm config set msvs_version 2013 --global
+```
+.center[npm]
+
+]]
+.column_t1[.vmiddle[
+# Settings - Example
+
+```
+*echo %PYTHON%  
+# f:\prog\py27\python.exe
+
+npm config set msvs_version 2013 --global
+
+*npm -v 
+# 3.3.12
+```
+
+]]
+
+---
+class: split-30 nopadding
+background-image: url(https://cloud.githubusercontent.com/assets/4231611/11557579/f6e2c82a-99df-11e5-999b-a616878f9ef7.jpg)
+
+.column_t2.center[.vmiddle[
+.fgtransparent[
+# <i class="icon-javascript fa-4x"></i>
+]
+]]
+.column_t2[.vmiddle.nopadding[
+.shadelight[.boxtitle1[
+# Node.JS Basics
+#### 
+]]
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t1[.vmiddle[
+# Example #1 (http-1)
+
+```
+// alternative
+const http = require('http');
+
+const hostname = '127.0.0.1';
+const port = 1337;
+
+*http.createServer((req, res) => {
+  res.writeHead(200, { 'Content-Type': 'text/plain' });
+  res.end('Hello World\n');
+*}).listen(port, hostname, () => {
+  console.log(`Server running at http://${hostname}:${port}/`);
+});
+```
+
+]]
+.column_t2[.vmiddle[
+
+```
+var http = require('http');
+*http.createServer(function (req, res) {
+    res.writeHead(200, {'Content-Type': 'text/plain'});
+    res.end('hello world\n');
+}).listen(8000, '127.0.0.1');
+
+console.log('Server running at http://127.0.0.1:8000/');
+```
+
+```bash
+*$> node ex-01-web.js
+Server running at http://127.0.0.1:8000/
+
+*$> curl http://localhost:8000
+hello world
+```
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t2[.vmiddle[
+
+```bash
+$> ab -n 100 -c 100 http://localhost:8000/
+$> ab -n 100 -c 100 http://127.0.0.1:8000
+*$> ab -n 100 -c 100 http://127.0.0.1:8000/
+
+This is ApacheBench, ... Benchmarking 127.0.0.1 (be patient).....done
+
+Server Hostname:        127.0.0.1
+Server Port:            8000
+Document Path:          /
+
+Concurrency Level:      100
+Time taken for tests:   2.059 seconds
+Complete requests:      100
+Requests per second:    48.56 [#/sec] (mean)
+*Time per request:       2059.203 [ms] (mean)
+Time per request:       20.592 [ms] (mean, across all concurrent requests)
+Transfer rate:          5.36 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   0.0      0       0
+Processing:  1997 2021   8.4   2028    2028
+Waiting:       47   51   8.7     47      78
+Total:       1997 2021   8.4   2028    2028
+
+Percentage of the requests served within a certain time (ms)
+  50%   2028
+  66%   2028
+  ...
+ 100%   2028 (longest request)
+```
+
+]]
+.column_t1[.vmiddle[
+# Example #1 (http-2)
+
+```
+var http = require('http');
+http.createServer(function (req, res) {
+    res.writeHead(200, {'Content-Type': 'text/plain'});
+    res.write('hello\n');
+*   setTimeout(function(){ res.end('world\n'); },2000);
+}).listen(8000, '127.0.0.1');
+```
+
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t1[.vmiddle[
+# Example #1 (http-3)
+
+
+]]
+.column_t2[.vmiddle[
+
+```
+var http = require('http');
+
+http.createServer(function(request, response) {
+  var headers = request.headers;
+  var method = request.method;
+  var url = request.url;
+  var body = [];
+
+  request.on('error', function(err) { console.error(err);})
+    .on('data', function(chunk) { body.push(chunk);})
+    .on('end', function() {
+*       response.on('error', function(err) { console.error(err); });
+*       response.writeHead(200, {'Content-Type': 'text/html'});  
+*       response.end('<html><body><h1>Hello, World!</h1></body></html>');
+    });
+}).listen(8080); 
+```
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t2[.vmiddle[
+
+```
+var http = require('http');
+
+http.createServer(function(request, response) {
+  var headers = request.headers;
+  var method = request.method;
+  var url = request.url;
+  var body = [];
+
+  request.on('error', function(err) { console.error(err);})
+    .on('data', function(chunk) { body.push(chunk);})
+    .on('end', function() {
+        body = Buffer.concat(body).toString();
+        response.on('error', function(err) { console.error(err); });
+
+*       response.statusCode = 200;
+*       response.setHeader('Content-Type', 'application/json');
+
+*       var responseBody = {
+*         headers: headers,
+*         method: method,
+*         url: url,
+*         body: body
+*       };
+
+*       response.write(JSON.stringify(responseBody));
+*       response.end();
+    });
+}).listen(8080); 
+```
+
+]]
+.column_t1[.vmiddle[
+# Example #1 (http-4)
+####&nbsp;
+
+.figstyle1[
+![](images/fig02.jpg)
+]
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t2[.vmiddle[
+## Example #1 (socket-1)
+
+```
+var net = require('net');
+
+*var server = net.createServer(function (socket) {
+  socket.write('Echo Server\r\n');
+  socket.pipe(socket);
+});
+
+server.listen(1337, '127.0.0.1');
+
+console.log('Echo Server running at port 1337');
+```
+
+```bash
+*$> node ex-01-net-echo1.js
+Echo Server running at port 1337
+```
+
+]]
+.column_t1[.vmiddle[
+
+.figstyle1[
+![](images/fig01.jpg)
+]
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t1[.vmiddle[
+## Example #1 (socket-2)
+
+
+]]
+.column_t2[.vmiddle[
+
+```
+var net = require('net');
+*net.createServer(function(socket){
+    socket.write('hello\n');
+    socket.write('world\n');
+*   socket.on('data', function(data){
+*       socket.write(data.toString().toUpperCase())
+*   });
+}).listen(8000);
+
+console.log('Echo Server-2 running at port 8000');
+```
+
+```bash
+*$> node ex-01-net-echo2.js
+Echo Server-2 running at port 8000
+
+*$> ncat localhost 8000
+hello
+world
+ini data
+INI DATA
+data lagi: echo server 2
+DATA LAGI: ECHO SERVER 2
+```
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t2[.vmiddle[
+
+```
+var net = require('net');
+var server = net.createServer(function(connection) { 
+   console.log('client connected');
+*  connection.on('end', function() { console.log('client disconnected'); });
+
+   connection.write('Hello World!\r\n');
+   connection.pipe(connection);
+});
+
+server.listen(8080, function() { console.log('server is listening'); });
+```
+
+```bash
+$> node ex-01-net-server.js
+server is listening
+*client connected
+*client disconnected
+```
+
+]]
+.column_t1[.vmiddle[
+# Example #1 (socket-3)
+
+```
+var net = require('net');
+var client = net.connect({port: 8080}, function() { console.log('connected to server!'); });
+
+client.on('data', function(data) {
+   console.log(data.toString());
+*  client.end();
+});
+*client.on('end', function() { console.log('disconnected from server'); });
+```
+
+```bash
+$> node ex-01-net-client.js
+connected to server!
+Hello World!
+
+*disconnected from server
+```
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t1[.vmiddle[
+# Example #1 (socket-4)
+
+```bash
+$> ncat localhost 8000
+hello
+world
+*test dari ncat1
+roger ncat1, ini dari ncat2
+```
+
+```bash
+$> ncat localhost 8000
+hello
+world
+test dari ncat1
+*roger ncat1, ini dari ncat2
+```
+
+]]
+.column_t2[.vmiddle[
+
+```
+Array.prototype.remove = function(from, to) {
+  var rest = this.slice((to || from) + 1 || this.length);
+  this.length = from < 0 ? this.length + from : from;
+  return this.push.apply(this, rest);
+};
+
+// Application
+var net = require('net');
+var sockets = [];
+net.createServer(function(socket){
+    sockets.push(socket);
+    socket.write('hello\n');
+    socket.write('world\n');
+    socket.on('data', function(data){
+        var i;
+*       for (i=0; i < sockets.length; i++){
+            if (sockets[i] === socket)  continue;
+*           sockets[i].write(data.toString());
+        }
+    });
+    socket.on('end', function(){
+        var i = sockets.indexOf(socket);
+        sockets.remove(i);
+    });
+}).listen(8000);
+```
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t2[.vmiddle[
+# Example #1 
+### http echo server
+
+```
+var http = require('http');
+
+http.createServer(function(request, response) {
+  request.on('error', function(err) {
+    console.error(err);
+    response.statusCode = 400;
+    response.end();
+  });
+  response.on('error', function(err) { console.error(err); });
+  
+* if (request.method === 'GET' && request.url === '/echo') {
+*   request.pipe(response);
+  } else {
+*   response.statusCode = 404;
+*   response.end();
+  }
+}).listen(8080);
+```
+
+]]
+.column_t1[.vmiddle[
+
+.figstyle1[
+![](images/fig03.jpg)
+]
+
+.figstyle1[
+![](images/fig04.jpg)
+]
+
+]]
+
+
+---
+class: split-50 nopadding 
+
+.column_t2[.vmiddle[
+## Example #2
+- `fs` : synchronous vs. asynchronous
+
+```
+var fs = require("fs");
+
+*var data = fs.readFileSync('ex-02-input.txt');
+console.log(data.toString());
+
+console.log("Program Ended");
+```
+
+```bash
+*$> node ex-02-fs1.js
+ini input ini input ini input
+input ini input ini
+input input input
+*Program Ended
+```
+
+]]
+.column_t1[.vmiddle[
+
+```
+var fs = require("fs");
+
+*fs.readFile('ex-02-input.txt', function (err, data) {
+    if (err) return console.error(err);
+    console.log(data.toString());
+});
+
+console.log("Program Ended");
+```
+
+```bash
+*$> node ex-02-fs2.js
+*Program Ended
+ini input ini input ini input
+input ini input ini
+input input input
+```
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t2[.vmiddle[
+## Example #3 (events) 
+
+```
+var events = require('events');
+var eventEmitter = new events.EventEmitter();
+//-----
+var connectHandler = function connected() {
+   console.log('connection succesful.');
+*  eventEmitter.emit('data_received');
+}
+//-----
+*eventEmitter.on('connection', connectHandler);
+ 
+*eventEmitter.on('data_received', function(){ console.log('data received succesfully.'); });
+//-----
+*eventEmitter.emit('connection');
+
+console.log("Program Ended.");
+```
+
+```bash
+$> node ex-03-event2.js
+2 Listner(s) listening to connection event
+*listner1 executed.
+*listner2 executed.
+Listner1 will not listen now.
+*listner2 executed.
+1 Listner(s) listening to connection event
+Program Ended.
+```
+
+]]
+.column_t1[.vmiddle[
+
+```
+var events = require('events');
+var eventEmitter = new events.EventEmitter();
+//-----------
+var listner1 = function listner1() { console.log('listner1 executed.'); }
+var listner2 = function listner2() { console.log('listner2 executed.'); }
+//-----------
+eventEmitter.addListener('connection', listner1);
+eventEmitter.on('connection', listner2);
+//-----------
+var eventListeners = require('events').EventEmitter.listenerCount(eventEmitter,'connection');
+console.log(eventListeners + " Listner(s) listening to connection event");
+
+*eventEmitter.emit('connection');
+//-----------
+eventEmitter.removeListener('connection', listner1);
+console.log("Listner1 will not listen now.");
+
+*eventEmitter.emit('connection');
+
+eventListeners = require('events').EventEmitter.listenerCount(eventEmitter,'connection');
+console.log(eventListeners + " Listner(s) listening to connection event");
+//-----------
+console.log("Program Ended.");
+```
+
+```bash
+$> node ex-03-event1.js
+*connection succesful.
+*data received succesfully.
+Program Ended.
+```
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t1[.vmiddle[
+# Example #4
+### http server & client
+
+```bash
+$> node ex-04-server.js
+Server running at http://127.0.0.1:7070/
+*Request for /ex-04-index.html received.
+```
+
+]]
+.column_t2[.vmiddle[
+
+```
+var http = require('http');
+var fs = require('fs');
+var url = require('url');
+
+http.createServer( function (request, response) {  
+
+   var pathname = url.parse(request.url).pathname;
+*  console.log("Request for " + pathname + " received.");
+   
+   fs.readFile(pathname.substr(1), function (err, data) {
+      if (err) {
+         console.log(err);
+         response.writeHead(404, {'Content-Type': 'text/html'});
+      }else{  
+*        response.writeHead(200, {'Content-Type': 'text/html'});  
+*        response.write(data.toString());   
+      }
+      response.end();
+   });   
+}).listen(7070);
+
+*console.log('Server running at http://127.0.0.1:7070/');
+```
+.center[server.js]
+
+]]
+
+
+---
+class: split-50 nopadding 
+
+.column_t2[.vmiddle[
+
+```
+var http = require('http');
+
+var options = {
+   host: 'localhost',
+   port: '7070',
+   path: '/ex-04-index.html'  
+};
+
+*var callback = function(response){
+   var body = '';
+   response.on('data', function(data) {
+      body += data;
+   });
+   
+   response.on('end', function() {
+*     console.log(body);
+   });
+}
+
+*var req = http.request(options, callback);
+req.end();
+```
+
+]]
+.column_t1[.vmiddle[
+# Example #4
+### http server & client
+
+```bash
+*$> node ex-04-client.js
+<html>
+<head>
+<title>Sample Page</title>
+</head>
+<body>
+<h1>Hello World!</h1>
+</body>
+</html>
+```
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t2[.vmiddle[
+# Example #5 (Stream)
+
+```
+var fs = require("fs");
+var data = '';
+
+*var readerStream = fs.createReadStream('ex-05-input.txt');
+
+readerStream.setEncoding('UTF8');
+//--------
+readerStream.on('data', function(chunk) { data += chunk; });
+readerStream.on('end',function(){ console.log(data); });
+readerStream.on('error', function(err){ console.log(err.stack); });
+//--------
+*console.log("Program Ended");
+```
+
+```bash
+$> node ex-05-rwstream1.js
+*Program Ended
+ini input ini input ini input
+input ini input ini
+input input input
+```
+
+]]
+.column_t1[.vmiddle[
+
+```
+var fs = require("fs");
+var data = 'data input data input data';
+
+*var writerStream = fs.createWriteStream('ex-05-output.txt');
+
+writerStream.write(data,'UTF8');
+writerStream.end();
+// ------------
+writerStream.on('finish', function() { console.log("Write completed."); });
+writerStream.on('error', function(err){ console.log(err.stack); });
+// ------------
+
+*console.log("Program Ended");
+```
+
+```bash
+$> node ex-05-rwstream2.js
+*Program Ended
+Write completed.
+```
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t1[.vmiddle[
+# Example #5
+
+]]
+.column_t2[.vmiddle[
+
+```
+var fs = require("fs");
+
+var readerStream = fs.createReadStream('ex-05-input.txt');
+var writerStream = fs.createWriteStream('ex-05-output-2.txt');
+
+*readerStream.pipe(writerStream);
+
+console.log("Program Ended");
+```
+
+```
+var fs = require("fs");
+var zlib = require('zlib');
+
+// ----------------
+fs.createReadStream('ex-05-input.txt')
+* .pipe(zlib.createGzip())
+* .pipe(fs.createWriteStream('ex-05-input.txt.gz'));
+  
+console.log("File Compressed.");
+// ----------------
+
+*// need sync (callback after write gz)
+fs.createReadStream('ex-05-input.txt.gz')
+* .pipe(zlib.createGunzip())
+* .pipe(fs.createWriteStream('ex-05-input-recovered.txt'));
+  
+console.log("File Decompressed.");
+```
+
+]]
+
+
+---
+class: split-50 nopadding 
+
+.column_t2[.vmiddle[
+
+```
+var os = require("os");
+
+console.log('endianness : ' + os.endianness());
+
+*console.log('type : ' + os.type());
+*console.log('platform : ' + os.platform());
+
+console.log('total memory : ' + os.totalmem() + " bytes.");
+console.log('free memory : ' + os.freemem() + " bytes.");
+```
+
+```bash
+$> node ex-06.js
+endianness : LE
+*type : Windows_NT
+*platform : win32
+total memory : 6097141760 bytes.
+free memory : 3529269248 bytes.
+```
+
+]]
+.column_t1[.vmiddle[
+# Example #6 (os)
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t1[.vmiddle[
+# Example #7 (path)
+
+]]
+.column_t2[.vmiddle[
+
+```
+var path = require("path");
+
+console.log('normalization : ' + path.normalize('/test/test1//2slashes/1slash/tab/..'));
+
+console.log('joint path : ' + path.join('/test', 'test1', '2slashes/1slash', 'tab', '..'));
+
+*console.log('resolve : ' + path.resolve('ex-06.js'));
+*console.log('ext name : ' + path.extname('ex-06.js'));
+```
+
+```bash
+$> node ex-07.js
+normalization : \test\test1\2slashes\1slash
+joint path : \test\test1\2slashes\1slash
+*resolve : H:\nodejs-5.2.0\work\basics\ex-06.js
+*ext name : .js
+```
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t2[.vmiddle[
+
+```
+var dns = require('dns');
+
+dns.lookup('www.google.com', function onLookup(err, address, family) {
+*  console.log('address:', address);
+   dns.reverse(address, function (err, hostnames) {
+       if (err) {
+          console.log(err.stack);
+       }
+
+*      console.log('reverse for ' + address + ': ' + JSON.stringify(hostnames));
+   });  
+});
+```
+
+```bash
+$> node ex-08.js
+*address: 111.94.248.59
+reverse for 111.94.248.59: ["fm-dyn-111-94-248-59.fast.net.id"]
+```
+
+]]
+.column_t1[.vmiddle[
+# Example #8 (dns)
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t1[.vmiddle[
+# Example #9 (domain)
+
+```bash
+$> node ex-09.js
+*listener handled this error (To be handled by listener)
+domain1 handled this error (To be handled by domain1)
+*domain2 handled this error (To be handled by domain2)
+```
+
+]]
+.column_t2[.vmiddle[
+
+```
+var EventEmitter = require("events").EventEmitter;
+var domain = require("domain");
+
+var emitter1 = new EventEmitter();
+var domain1  = domain.create();
+
+//-------------- use listener
+domain1.on('error', function(err){ console.log("domain1 handled this error ("+err.message+")"); });
+domain1.add(emitter1);
+
+emitter1.on('error',function(err){ console.log("listener handled this error ("+err.message+")"); });
+*emitter1.emit('error',new Error('To be handled by listener'));
+
+//-------------- remove listener
+emitter1.removeAllListeners('error');
+*emitter1.emit('error',new Error('To be handled by domain1'));
+
+// -------------- uncaught
+// domain1.remove(emitter1);
+// emitter1.emit('error', new Error('Converted to exception. System will crash!'));
+
+//--------------
+//--------------
+var domain2 = domain.create();
+
+domain2.on('error', function(err){ console.log("domain2 handled this error ("+err.message+")"); });
+
+domain2.run(function(){
+   var emitter2 = new EventEmitter();
+*  emitter2.emit('error',new Error('To be handled by domain2'));   
+});
+```
+
+]]
+
+
+---
+class: split-50 nopadding 
+
+.column_t2[.vmiddle[
+
+```
+console.log( __filename );
+console.log( __dirname );
+
+//------------
+function printHello(){ console.log( "Hello, World!"); }
+setTimeout(printHello, 2000);    // call after 2 seconds
+*//setInterval(printHello, 2000); // repeat
+
+var t = setTimeout(printHello, 2000);
+*clearTimeout(t); //stop the timer, not executed
+
+//------------
+*console.info("Program Started");
+
+var counter = 10;
+console.log("Counter: %d", counter);
+console.time("Getting data");
+// Do some processing here...
+console.timeEnd('Getting data');
+*console.info("Program Ended")
+```
+
+```bash
+$> node ex-10-misc1.js
+H:\nodejs-5.2.0\work\basics\ex-10-misc1.js
+H:\nodejs-5.2.0\work\basics
+*Program Started
+Counter: 10
+Getting data: 0.626ms
+*Program Ended
+Hello, World!
+```
+
+
+]]
+.column_t1[.vmiddle[
+# Example #10 (misc)
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t1[.vmiddle[
+# Example #10 (misc)
+
+```bash
+$> node ex-10-misc2.js
+Program Started
+Hello World!
+0: H:\nodejs-5.2.0\node.exe
+1: H:\nodejs-5.2.0\work\basics\ex-10-misc2.js
+*H:\nodejs-5.2.0\node.exe
+*win32
+*Current directory: H:\nodejs-5.2.0\work\basics
+*Current version: v5.2.0
+*{ rss: 17371136, heapTotal: 7524096, heapUsed: 4050072 }
+About to exit with code: 0
+```
+
+]]
+.column_t2[.vmiddle[
+
+```
+process.on('exit', function(code) {
+  // Following code will never execute.
+  setTimeout(function() { console.log("This will not run"); }, 0);
+  console.log('About to exit with code:', code);
+});
+console.log("Program Started");
+
+//------------
+process.stdout.write("Hello World!" + "\n");
+// Reading passed parameter
+process.argv.forEach(function(val, index, array) { console.log(index + ': ' + val); });
+
+//------------
+*console.log(process.execPath);
+*console.log(process.platform);
+*console.log('Current directory: ' + process.cwd());
+*console.log('Current version: ' + process.version);
+*console.log(process.memoryUsage());
+```
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t2[.vmiddle[
+
+```
+buf = new Buffer(256);
+len = buf.write("Simply Easy Learning");
+
+console.log("Octets written : "+  len);
+//---------------
+buf = new Buffer(26);
+for (var i = 0 ; i < 26 ; i++) { buf[i] = i + 97; }
+
+*console.log( buf.toString('ascii'));       // outputs: abcdefghijklmnopqrstuvwxyz
+*console.log( buf.toString('ascii',0,5));   // outputs: abcde
+*console.log( buf.toString('utf8',0,5));    // outputs: abcde
+*console.log( buf.toString(undefined,0,5)); // encoding defaults to 'utf8', outputs abcde
+//---------------
+var buf = new Buffer('Simply Easy Learning');
+var json = buf.toJSON(buf);
+
+console.log(json);
+```
+
+```bash
+$> node ex-11-buf1.js
+Octets written : 20
+*abcdefghijklmnopqrstuvwxyz
+*abcde
+*abcde
+*abcde
+{ type: 'Buffer',
+  data:
+   [ 83, 105, 109, 112, 108, 121, 32, 69, 97, 115, 121, 32, 76, 101, 97, 114, 110, 105, 110, 103 ] }
+```
+
+]]
+.column_t1[.vmiddle[
+# Example #11 (Buffer)
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t1[.vmiddle[
+# Example #11 (Buffer)
+
+```bash
+$> node ex-11-buf2.js
+*buffer3 content: TutorialsPoint Simply Easy Learning
+ABC comes before ABCD
+*buffer2 content: ABC
+*buffer2 content: Tutorials
+buffer length: 14
+```
+
+]]
+.column_t2[.vmiddle[
+
+```
+var buffer1 = new Buffer('TutorialsPoint ');
+var buffer2 = new Buffer('Simply Easy Learning');
+var buffer3 = Buffer.concat([buffer1,buffer2]);
+*console.log("buffer3 content: " + buffer3.toString());
+//---------------
+var buffer1 = new Buffer('ABC');
+var buffer2 = new Buffer('ABCD');
+var result = buffer1.compare(buffer2);
+
+if(result < 0) { console.log(buffer1 +" comes before " + buffer2);}
+else if(result == 0){ console.log(buffer1 +" is same as " + buffer2);}
+else { console.log(buffer1 +" comes after " + buffer2); }
+//---------------
+var buffer1 = new Buffer('ABC');
+var buffer2 = new Buffer(3);
+buffer1.copy(buffer2); //copy a buffer
+*console.log("buffer2 content: " + buffer2.toString());
+//---------------
+var buffer1 = new Buffer('TutorialsPoint');
+var buffer2 = buffer1.slice(0,9); //slicing a buffer
+*console.log("buffer2 content: " + buffer2.toString());
+//---------------
+var buffer = new Buffer('TutorialsPoint');
+console.log("buffer length: " + buffer.length); //length of the buffer
+```
+
+]]
+
+
+---
+
+# References
+
+1. [Guides | Node.js](https://nodejs.org/en/docs/guides/)
+1. [Node.js Tutorial - TutorialsPoint](http://www.tutorialspoint.com/nodejs/)
+1. [Simple Servers | Node.js | Bevry's Learning Centre](http://learn.bevry.me/node/server/)
+
+
+---
+class: split-30 nopadding
+background-image: url(https://cloud.githubusercontent.com/assets/4231611/11557579/f6e2c82a-99df-11e5-999b-a616878f9ef7.jpg)
+
+.column_t2.center[.vmiddle[
+.fgtransparent[
+# <i class="icon-javascript fa-4x"></i>
+]
+]]
+.column_t2[.vmiddle.nopadding[
+.shadelight[.boxtitle1[
+# END
+
+### [Eueung Mulyana](https://github.com/eueung)
+### http://eueung.github.io/js/node-basics
+#### JS CodeLabs | [Attribution-ShareAlike CC BY-SA](https://creativecommons.org/licenses/by-sa/4.0/)
+#### 
+]]
+]]
+
+    </textarea>
+    <script src="https://gnab.github.io/remark/downloads/remark-0.12.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create({highlightLanguage:'javascript', highlightStyle: 'tomorrow', highlightLines: true});
+    </script>
+  </body>
+</html>
