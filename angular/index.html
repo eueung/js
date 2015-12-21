@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Angular.JS Tutorial</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Open+Sans);
+
+body { font-family: 'Open Sans Condensed','Droid Serif','Open Sans', sans-serif; }
+h1, h2, h3, h4 {
+    font-family: 'Yanone Kaffeesatz';
+    font-weight: 400;
+    margin-bottom: 0;
+    margin-top: 10px;
+}
+h1 { font-size: 3.5em; }
+h2 { font-size: 3em; }
+h3 { font-size: 1.6em; }
+h4 { font-size: 1em; }
+.inverse {
+    background: #272822;
+    color: #777872;
+    text-shadow: 0 0 20px #333;
+}
+.inverse h1, .inverse h2 {
+    color: #f3f3f3;
+    line-height: 0.8em;
+}
+
+code { font-family: 'Ubuntu Mono', sans-serif !important; }
+pre code { background-color: #fff; border-top: 5px solid #ddd; border-bottom: 5px solid #ddd; margin-top: 10px;}
+h1 code { font-weight: 300; font-size: 1em !important; background-color: #eee; padding: 0px 5px; border-radius: 5px; }
+
+a {
+    color: #F92672;
+    text-decoration: none;
+}
+.task {
+    float: right;
+    font-size: 0.9em;
+    padding-top: 0.6em;
+}
+.task a {
+    color: #080;
+    text-decoration: none;
+}
+.right {
+    float: right;
+    margin-left: 1em;
+}
+.pushdown {
+    margin-top: 12em;
+}
+
+.done-true {
+  text-decoration: line-through;
+  color: grey;
+}
+
+ul.unstyled,ol.unstyled{margin-left:0;list-style:none;}
+
+.remark-visible .remark-slide-scaler {
+  overflow-y: auto;
+}
+
+.nopadding { padding:0 !important;}
+
+.red    { color: #FF4943; }
+.gray   { color: #787878; }
+.green  { color: #87A558; }
+.blue   { color: #41C8F0; }
+.yellow { color: #DBEC62; }
+.white  { color: #FFFFFF; }
+.or1 {color: #FFD740;}
+.bluelight {color: #B3E5FC;}
+.dark1 {color: #B6B6B6;}
+
+.bold { font-weight: bold; }
+
+pre {
+  background-color: transparent ; 
+  border: 0 ; 
+  border-radius: 0 ;
+  padding: 10px 0; 
+}
+.remark-code {
+  font-size: 14px;
+  line-height: 1.25;
+}
+
+.remark-code-line-highlighted {
+  font-weight: bold;
+  background-color: transparent;
+  text-shadow: 
+      0px 10px 30px rgba(255, 98, 20, .5),
+      10px 0px 30px rgba(255, 98, 20, .5),
+      -10px 0px 30px rgba(255, 98, 20, .5),
+      0px -10px 30px rgba(255, 98, 20, .5);
+}
+.reverse .remark-code-line-highlighted {
+    font-weight: normal !important;
+    color: transparent;
+    text-shadow: 0 0 5px #000;
+    font-size: 1em;
+}
+.reverse .remark-code-line { font-weight: bold; }
+
+.shade {
+    padding: 0;
+}
+
+.shade  {
+    background-color:rgba(0,0,0,0.7);
+    color: white;
+    width: 100%;
+    padding: 1em 0;
+}
+
+.shadelight  {
+    background-color:rgba(0,0,0,0.5);
+    color: white;
+    width: 100%;
+    padding: 0;
+}
+
+.fgtransparent h1 {
+  color:rgba(255,255,255,0.8) !important;
+  text-shadow: none;
+}
+
+.nosplit>div:first-of-type {width: 100%; height:100%; float:left; }
+.split-30>div:first-of-type {width: 30%; height:100%; float:left; }
+.split-30>div:nth-of-type(2) {width: 70%; height:100%; float:right;}
+.split-50>div:first-of-type {width: 50%; height:100%; float:left; }
+.split-50>div:nth-of-type(2) {width: 50%; height:100%; float:right;}
+.column_t1 {
+  background-color: #2aa9df;
+  color: white;
+}
+.column_t1 a {color: #B3E5FC;}
+.column_t1 pre code {
+  -webkit-box-shadow: 0px 0px 55px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 55px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 55px 0px rgba(0,0,0,0.75);  
+}
+.column_t2 {
+}
+
+.uline {text-decoration: underline;}
+
+.vmiddle {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  padding:1em;
+}
+.pushfront {
+    z-index: 2;   
+}
+.remark-slide-content .vmiddle h1 {margin-top: 0;}
+
+.boxtitle1 {
+  padding:1em;
+  text-align: left;
+  border-left: white solid 0.5em;
+  border-right: white solid 0em;
+}
+
+.figplain img {
+  width: 100%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-top: #eee solid 20px;
+  border-bottom: #eee solid 20px;
+}
+.noborder img {border:none !important;}
+
+.figstyle1 img {
+  -webkit-box-shadow: 0px 0px 55px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 55px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 55px 0px rgba(0,0,0,0.75);  
+  width: 100%;
+}
+.figstyle1h img {
+  -webkit-box-shadow: 0px 0px 55px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 55px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 55px 0px rgba(0,0,0,0.75);  
+  max-width: 100%;
+  max-height: 600px;
+}
+.figstyle1h {}
+
+.tab1 table {
+  background: rgba(255, 255, 255, 0.12);
+  border: 4px solid #eeeeee;
+  margin: 0px auto;
+  border-collapse:collapse;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15); }
+
+.tab1 table td, .tab1 table th {
+  border: 1px solid white;
+  padding: 0.25em 1em;
+  }
+
+.tab1 table th {
+  opacity: 1;
+  background-color:#ff6600;
+  vertical-align:middle;
+} 
+.fullwidth, .fullwidth table {width: 100% !important;}
+.fullheight {max-height: 100% !important;}
+
+.tab2 table {
+  background: rgba(255, 255, 255, 0.12);
+  border: 4px solid #eeeeee;
+  margin: 0px auto;
+  border-collapse:collapse;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15); }
+
+.tab2 table td, .tab2 table th {
+  border: 1px solid #eee;
+  padding: 0.25em 1em;
+  }
+
+.tab2 table th {
+  opacity: 1;
+  background-color:#ff6600;
+  vertical-align:middle;
+}  
+.fonth2 {font-size: 3em;}
+.fonth3 {font-size: 2.4em;}
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://eueung.github.io/EL5244/mfizz22/font-mfizz.css">
+  </head>
+  <body>
+    <textarea id="source">
+
+
+class: split-30 nopadding
+background-image: url(https://cloud.githubusercontent.com/assets/4231611/11023047/8bebd1c6-86a0-11e5-8e5a-c08dff06cc1e.jpg)
+
+.column_t2.center[.vmiddle[
+.fgtransparent[
+# <i class="icon-javascript fa-4x"></i>
+]
+]]
+.column_t2[.vmiddle.nopadding[
+.shadelight[.boxtitle1[
+# Angular.JS
+
+### [Eueung Mulyana](https://github.com/eueung)
+### http://eueung.github.io/js/angular
+#### JS CodeLabs | [Attribution-ShareAlike CC BY-SA](https://creativecommons.org/licenses/by-sa/4.0/)
+#### 
+]]
+]]
+
+---
+class: column_t1 middle
+
+.fonth3[
+.tab1.fullwidth[
+| Agenda   |
+|:-------------:|
+| Basics |
+| Basics++ |
+| Flatlander |
+]]
+
+---
+class: split-30 nopadding
+background-image: url(https://cloud.githubusercontent.com/assets/4231611/11023047/8bebd1c6-86a0-11e5-8e5a-c08dff06cc1e.jpg)
+
+.column_t2.center[.vmiddle[
+.fgtransparent[
+# <i class="icon-javascript fa-4x"></i>
+]
+]]
+.column_t2[.vmiddle.nopadding[
+.shadelight[.boxtitle1[
+# Basics
+#### 
+]]
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t2[.vmiddle[
+
+```html
+<!doctype html>
+*<html ng-app>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  </head>
+  <body>
+    <div>
+      <label>Name:</label>
+*     <input type="text" ng-model="yourName" placeholder="Enter a name here">
+      <hr>
+*     <h1>Hello {{yourName}}!</h1>
+    </div>
+  </body>
+</html>
+```
+
+]]
+.column_t1[.vmiddle[
+# Example #1
+####&nbsp;
+
+.figstyle1[
+![](images/fig01.jpg)
+]
+
+####&nbsp;
+
+.figstyle1[
+![](images/fig02.jpg)
+]
+
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t1[.vmiddle[
+# Example #2
+####&nbsp;
+
+.figstyle1[
+![](images/fig03.jpg)
+]
+
+####&nbsp;
+
+.figstyle1[
+![](images/fig04.jpg)
+]
+
+
+]]
+.column_t2[.vmiddle[
+
+```html
+<!DOCTYPE html>
+*<html ng-app="ex-01-app">
+<head>
+  <meta charset="utf-8">
+  <title>Angular.JS</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+</head>
+<body>
+* <div ng-controller="GreetingController">
+   <label>Name: <input type="text" ng-model="name"></label>
+   <h1>Hello, {{ name }}!</h1>
+  </div>
+</body>
+*<script src="ex-01.js"></script>
+</html>
+```
+
+```
+*angular.module('ex-01-app', []);
+
+*angular.module('ex-01-app')
+* .controller( 'GreetingController',
+               function($scope) {
+*                 $scope.name = 'World';
+               }
+  );
+```
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t2[.vmiddle[
+
+```html
+  <div ng-controller="GreetingController">
+*   <form ng-submit="submit()">
+      <label>Name: <input type="text" ng-model="name"></label>
+    </form>
+*   <div ng-if="names.length > 0">
+      <h1>Hello to</h1>
+      <ul>
+*       <li ng-repeat="name in names">{{ name | uppercase }}</li>
+      </ul>
+    </div>
+  </div>
+```
+
+```
+angular.module('ex-02-app', []);
+
+angular.module('ex-02-app')
+  .controller(
+    'GreetingController',
+    function($scope) {
+*     $scope.name = 'Default';
+      $scope.names = [];
+
+*     $scope.submit = function() {
+*       $scope.names.push($scope.name);
+        $scope.name = "";
+      };
+    }
+);
+```
+]]
+.column_t1[.vmiddle[
+# Example #3
+####&nbsp;
+
+.figstyle1[
+![](images/fig05.jpg)
+]
+
+####&nbsp;
+
+.figstyle1[
+![](images/fig06.jpg)
+]
+
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t1[.vmiddle[
+# Example #4
+####&nbsp;
+
+.figstyle1[
+![](images/fig07.jpg)
+]
+
+####&nbsp;
+
+.figstyle1[
+![](images/fig08.jpg)
+]
+
+]]
+.column_t2[.vmiddle[
+
+```
+angular.module('ex-03-app', []);
+
+angular.module('ex-03-app')
+  .controller( 'GreetingController',
+    function($scope) {
+      $scope.name = ''; $scope.names = ['Ujang', 'Otong', 'Dodo'];
+
+      $scope.submit = function() {
+        $scope.names.push($scope.name); console.log('submitting', $scope.name);
+        $scope.name = "";
+      }; } );
+
+angular.module('ex-03-app')
+* .filter('reverse', function() {
+    return function(input) {
+*     return input.split("").reverse().join("");
+    }; });
+```
+
+```html
+<div ng-controller="GreetingController">
+  <form ng-submit="submit()">
+    <label>Name: <input type="text" ng-model="name"></label>
+  </form>
+  <div><h1>Hits</h1>
+*   <ul><li ng-repeat="name in names">{{ name | reverse}}</li></ul>
+  </div></div>
+```  
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t2[.vmiddle[
+
+```html
+<div id="app03" ng-app="store"> 
+<div ng-controller="StoreController as store">
+*<div ng-hide="store.product.soldOut">
+  <h1> {{store.product.name}} </h1>
+  <h2> ${{store.product.price}} </h2>
+  <p> {{store.product.description}} </p>
+* <button ng-show="store.product.canPurchase"> Add to Cart </button>
+</div>
+</div>
+</div>
+```
+
+```
+(function(){
+  var app = angular.module('store', [ ]);
+  app.controller('StoreController', function(){
+*   this.product = gem;
+  });
+
+  var gem = {
+    name: 'Dodecahedron',
+    price: 2.95,
+    description: '. . .',
+*   canPurchase: true,
+*   soldOut: false
+  }
+
+})();  
+```
+
+]]
+.column_t1[.vmiddle[
+# Example #5-1
+####&nbsp;
+
+.figstyle1[
+![](images/fig09.jpg)
+]
+
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t1[.vmiddle[
+
+```html
+<div id="app03a" ng-app="store_a"> 
+<div ng-controller="StoreController as store">
+*<div ng-repeat="product in store.products">
+  <div ng-hide="product.soldOut">
+    <h2> {{product.name}} </h2>
+    <h3> ${{product.price}} </h3>
+    <p> {{product.description}} </p>
+*   <button ng-show="product.canPurchase"> Add to Cart </button>
+  </div>
+</div>
+</div>
+</div>
+```
+
+.figstyle1[
+![](images/fig10.jpg)
+]
+
+]]
+.column_t2[.vmiddle[
+# Example #5-2
+
+```
+(function(){
+  var app = angular.module('store_a', [ ]);
+  app.controller('StoreController', function(){
+*   this.products = gems;
+  });
+
+  var gems = [
+  {
+    name: 'Dodecahedron',
+    price: 2.95,
+    description: '. . .',
+*   canPurchase: true,
+    soldOut: false
+  },
+  {
+    name: "Pentagonal Gem",
+    price: 5.95,
+    description: ". . .",
+*   canPurchase: false,
+    soldOut: false
+  }
+];
+
+})();  
+```
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t2[.vmiddle[
+
+```html
+<div id="app03a_mod" ng-app="store_a"> 
+<div ng-controller="StoreController as store">
+*<ul class="list-group">
+* <li class="list-group-item" ng-repeat="product in store.products">
+    <h3> {{product.name}} 
+*     <em class="pull-right"> {{product.price | currency }} </em>
+    </h3>
+  </li>
+</ul>
+</div>
+</div>
+```
+
+.figstyle1[
+![](images/fig11.jpg)
+]
+
+]]
+.column_t1[.vmiddle[
+# Example #5-3
+
+```
+(function(){
+  var app = angular.module('store_a', [ ]);
+  app.controller('StoreController', function(){
+    this.products = gems;
+  });
+
+  var gems = [
+  {
+    name: 'Dodecahedron',
+    price: 2.95,
+    description: '. . .',
+    canPurchase: true,
+    soldOut: false
+  },
+  {
+    name: "Pentagonal Gem",
+    price: 5.95,
+    description: ". . .",
+    canPurchase: false,
+    soldOut: false
+  }
+];
+
+})();  
+```
+
+]]
+
+---
+class: split-30 nopadding
+background-image: url(https://cloud.githubusercontent.com/assets/4231611/11023047/8bebd1c6-86a0-11e5-8e5a-c08dff06cc1e.jpg)
+
+.column_t2.center[.vmiddle[
+.fgtransparent[
+# <i class="icon-javascript fa-4x"></i>
+]
+]]
+.column_t2[.vmiddle.nopadding[
+.shadelight[.boxtitle1[
+# Basics++
+#### 
+]]
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t2[.vmiddle[
+
+```css
+.done-true {
+  text-decoration: line-through;
+  color: grey;
+}
+ul.unstyled,ol.unstyled{margin-left:0;list-style:none; padding: 0;}
+```
+
+]]
+.column_t1[.vmiddle[
+# Example #6 (Todo)
+####&nbsp;
+
+.figstyle1[
+![](images/fig12.jpg)
+]
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t1[.vmiddle[
+
+```html
+<!doctype html>
+<html ng-app="todoApp">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="ex-05-todo.js"></script>
+    <link rel="stylesheet" href="ex-05-todo.css">
+  </head>
+  <body>
+    <h2>Todo</h2>
+    <div ng-controller="TodoListController as todoList">
+*     <span>{{todoList.remaining()}} of {{todoList.todos.length}} remaining</span>
+*     [ <a href="" ng-click="todoList.archive()">archive</a> ]
+      <ul class="unstyled">
+        <li ng-repeat="todo in todoList.todos">
+          <input type="checkbox" ng-model="todo.done">
+*         <span class="done-{{todo.done}}">{{todo.text}}</span>
+        </li>
+      </ul>
+*     <form ng-submit="todoList.addTodo()">
+        <input type="text" ng-model="todoList.todoText"  size="30"
+               placeholder="add new todo here">
+        <input class="btn-primary" type="submit" value="add">
+      </form>
+    </div>
+  </body>
+</html>
+```
+
+]]
+.column_t2[.vmiddle[
+
+```
+angular.module('todoApp', [])
+  .controller('TodoListController', function() {
+    var todoList = this;
+    todoList.todos = [
+      {text:'learn angular', done:true},
+      {text:'build an angular app', done:false}];
+ 
+*   todoList.addTodo = function() {
+      todoList.todos.push({text:todoList.todoText, done:false});
+      todoList.todoText = '';
+    };
+ 
+*   todoList.remaining = function() {
+      var count = 0;
+      angular.forEach(todoList.todos, function(todo) {
+        count += todo.done ? 0 : 1;
+      });
+      return count;
+    };
+ 
+*   todoList.archive = function() {
+      var oldTodos = todoList.todos;
+      todoList.todos = [];
+      angular.forEach(oldTodos, function(todo) {
+        if (!todo.done) todoList.todos.push(todo);
+      });
+    };
+  });
+```
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t1[.vmiddle[
+
+.figstyle1[
+![](images/fig13.jpg)
+]
+
+####&nbsp;
+
+.figstyle1[
+![](images/fig14.jpg)
+]
+
+]]
+.column_t2[.vmiddle[
+# Example #7 (scotch.io)
+####&nbsp;
+
+```html
+<div class="jumbotron text-center">
+  <h1>Home Page</h1>
+* <p>{{ message }}</p>
+</div>
+```
+
+```html
+<div class="jumbotron text-center">
+  <h1>Contact Page</h1>
+* <p>{{ message }}</p>
+</div>
+```
+
+]]
+
+
+---
+class: split-50 nopadding 
+
+.column_t2[.vmiddle[
+
+```html
+<body ng-controller="mainController">
+
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/">Angular Routing Example</a>
+      </div>
+
+      <ul class="nav navbar-nav navbar-right">
+*       <li><a href="#home"><i class="fa fa-home"></i> Home</a></li>
+*       <li><a href="#about"><i class="fa fa-shield"></i> About</a></li>
+*       <li><a href="#contact"><i class="fa fa-comment"></i> Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div id="main">
+*   <div ng-view></div>
+  </div>
+  
+  <footer class="text-center">...</footer>
+  
+</body>
+```
+.center[HTML]
+
+]]
+.column_t1[.vmiddle[
+
+```
+var scotchApp = angular.module('scotchApp', ['ngRoute']);
+
+scotchApp.config(function($routeProvider) {
+  $routeProvider
+*   .when('/',        { templateUrl : 'ex-06/home.html', controller  : 'mainController' })
+*   .when('/home',    { templateUrl : 'ex-06/home.html', controller  : 'mainController' })
+*   .when('/about',   { templateUrl : 'ex-06/about.html', controller  : 'aboutController' })
+*   .when('/contact', { templateUrl : 'ex-06/contact.html', controller  : 'contactController' });
+});
+
+*scotchApp.controller('mainController', function($scope) {
+  $scope.message = 'Everyone come and see how good I look!';
+});
+
+*scotchApp.controller('aboutController', function($scope) {
+  $scope.message = 'Look! I am an about page.';
+});
+
+*scotchApp.controller('contactController', function($scope) {
+  $scope.message = 'Contact us! JK. This is just a demo.';
+});
+```
+.center[JS]
+
+]]
+
+
+---
+class: split-30 nopadding
+background-image: url(https://cloud.githubusercontent.com/assets/4231611/11023047/8bebd1c6-86a0-11e5-8e5a-c08dff06cc1e.jpg)
+
+.column_t2.center[.vmiddle[
+.fgtransparent[
+# <i class="icon-javascript fa-4x"></i>
+]
+]]
+.column_t2[.vmiddle.nopadding[
+.shadelight[.boxtitle1[
+# Flatlander
+### Based on [Shaping up with Angular.js](http://campus.codeschool.com/courses/shaping-up-with-angular-js/contents) @Codeschool
+]]
+]]
+
+---
+class: column_t1 middle center
+
+.figstyle1[
+![](images/fig15.jpg)
+]
+
+---
+class: column_t2 middle center
+
+.figstyle1[
+![](images/fig16.jpg)
+]
+
+---
+class: column_t1 middle center
+
+.figstyle1[
+![](images/fig17.jpg)
+]
+
+---
+class: column_t2 middle center
+
+.figstyle1[
+![](images/fig18.jpg)
+]
+
+---
+class: split-50 nopadding 
+
+.column_t2[.vmiddle[
+# HTML
+
+```html
+<div id="app02" ng-app="store"> 
+<div class="list-group ng-scope" ng-controller="StoreController as store">
+    <div class="list-group-item" ng-repeat="product in store.products">
+*     <product-title></product-title>
+*     <product-gallery></product-gallery>
+*     <product-panels></product-panels>
+    </div>
+</div>
+</div>
+
+</body>
+*<script src="flatlander-02.js"></script>
+*<script src="flatlander-02-products.js"></script>
+```
+
+]]
+.column_t1[.vmiddle[
+
+```css
+<style type="text/css">
+  body {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px 0;
+  }
+  .img-thumbnail {
+    margin: 10px auto; 
+  }  
+  li.small-image{
+    width: 50px;
+    margin-bottom: 0 !important;
+  }
+  li.small-image img{
+    width: 100%;
+  }
+  .nopadding { padding: 0 !important; }
+</style>
+```
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t1[.vmiddle[
+# JS
+
+```
+(function(){
+  var app = angular.module('store', ['store-products']);
+  //----------------
+* app.controller('StoreController', [ '$http', function($http) {
+    var store = this;
+    store.products = [];
+*   $http.get('flatlander-02/store-products.json').success(function(data){ store.products = data; });
+  }]);
+  //----------------
+* app.controller('ReviewController', function() {
+    this.review = {};
+
+    this.addReview = function(product) {
+      this.review.createdOn = Date.now();
+      product.reviews.push(this.review);
+      this.review = {};
+    };
+  });
+  //----------------
+})();
+```
+
+]]
+.column_t2[.vmiddle[
+
+```
+(function(){
+  var app = angular.module('store-products', []);
+  //----------------
+* app.directive('productGallery', function() {
+    return { restrict: 'E', templateUrl: 'flatlander-02/templates/product-gallery.html',
+      controller: function() { this.current = 0; 
+        this.setCurrent = function(newGallery){ this.current = newGallery || 0; };
+      },
+      controllerAs: 'gallery'
+    };
+  });
+  //----------------
+* app.directive('productTitle', function() {
+    return { restrict: 'E', templateUrl: 'flatlander-02/templates/product-title.html' };
+  });
+  //----------------
+  app.directive("productSpecs", function() {
+    return { restrict: 'A', templateUrl: 'flatlander-02/templates/product-specs.html' };
+  });
+  //----------------
+* app.directive("productPanels", function() {
+    return { restrict: 'E', templateUrl: 'flatlander-02/templates/product-panels.html',
+      controller: function() { this.tab = 1; 
+        this.selectTab = function(setTab) { this.tab = setTab; }; 
+        this.isSelected = function(checkTab) { return this.tab === checkTab; };
+      },
+      controllerAs: 'panel'
+    };
+  });
+  //----------------
+})();
+```
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t2[.vmiddle[
+### product-title.html
+
+```html
+<h3>
+  {{product.name}}
+* <em class="pull-right">{{product.price | currency}}</em>
+</h3>
+```
+
+### product-gallery.html
+
+```html
+<div class="gallery" ng-show="product.images.length">
+* <img ng-src="{{product.images[gallery.current]}}" class="img img-circle img-thumbnail center-block"/>
+  <ul class="clearfix nopadding">
+    <li class="small-image pull-left thumbnail" ng-repeat="image in product.images track by $index">
+*     <a href ng-click="gallery.setCurrent($index)"> <img ng-src="{{image}}" /> </a>
+    </li>
+  </ul>
+</div>
+```
+
+]]
+.column_t1[.vmiddle[
+### product-specs.html
+
+```html
+<h4>Specs</h4>
+  <ul class="list-unstyled">
+    <li>
+      <strong>Shine</strong>
+      : {{product.shine}}</li>
+    <li>
+    <strong>Faces</strong>
+      : {{product.faces}}</li>
+    <li>
+      <strong>Rarity</strong>
+      : {{product.rarity}}</li>
+    <li>
+      <strong>Color</strong>
+      : {{product.color}}</li>
+  </ul>
+</div>
+```
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t1[.vmiddle[
+### product-panels.html
+
+```
+<section>
+  <ul class="nav nav-pills">
+*   <li ng-class="{ active:panel.isSelected(1) }"> <a href ng-click="panel.selectTab(1)">Description</a> </li>
+*   <li ng-class="{ active:panel.isSelected(2) }"> <a href ng-click="panel.selectTab(2)">Specifications</a> </li>
+*   <li ng-class="{ active:panel.isSelected(3) }"> <a href ng-click="panel.selectTab(3)">Reviews</a> </li>
+  </ul>
+
+* <div class="panel" ng-show="panel.isSelected(1)">
+    <h4>Description</h4>
+    <blockquote>{{product.description}}</blockquote>
+  </div>
+
+* <div product-specs class="panel" ng-show="panel.isSelected(2)" ></div>
+
+* <div class="panel" ng-show="panel.isSelected(3)">
+    <h4>Reviews</h4>
+    ...
+  </div>
+</section>
+
+```
+
+]]
+.column_t2[.vmiddle[
+
+```html
+*<blockquote ng-repeat="review in product.reviews">
+  <b>{{review.stars}} Stars</b>
+  {{review.body}}
+  <footer><cite>{{review.author}} on {{review.createdOn | date}}</cite></footer>
+</blockquote>
+
+*<form name="reviewForm" role="form" ng-controller="ReviewController as reviewCtrl" ng-submit="reviewForm.$valid && reviewCtrl.addReview(product)" novalidate>
+
+* <blockquote>
+    <b>{{reviewCtrl.review.stars}} Stars</b>
+    {{reviewCtrl.review.body}}
+    <footer><cite>{{reviewCtrl.review.author}}</cite></footer>
+  </blockquote>
+
+* <h4>Submit a Review</h4>
+* <div class="form-group">
+    <select class="form-control" ng-options="stars for stars in [5,4,3,2,1]" ng-model="reviewCtrl.review.stars" required>
+      <option value="">Rate the Product</option>
+    </select>
+  </div>
+
+* <div class="form-group">
+    <tag-textarea class="form-control" rows="3" ng-model="reviewCtrl.review.body" required></tag-textarea>
+  </div>
+
+* <div class="form-group">
+    <input type="email" class="form-control" ng-model="reviewCtrl.review.author" required />
+  </div>
+
+* <input type="submit" value="Submit" class="btn btn-default" value="Submit Review" />
+</form>
+```
+
+]]
+
+
+---
+# References
+
+1. [AngularJS — Superheroic JavaScript MVW Framework](https://angularjs.org/)
+1. [Single Page Apps with AngularJS Routing and Templating | Scotch](https://scotch.io/tutorials/single-page-apps-with-angularjs-routing-and-templating)
+1. [Shaping up with Angular.js](http://campus.codeschool.com/courses/shaping-up-with-angular-js/contents)
+1. [Angular introduction](http://kjbekkelund.github.io/presentations/angular-intro/#1)
+
+---
+class: split-30 nopadding
+background-image: url(https://cloud.githubusercontent.com/assets/4231611/11023047/8bebd1c6-86a0-11e5-8e5a-c08dff06cc1e.jpg)
+
+.column_t2.center[.vmiddle[
+.fgtransparent[
+# <i class="icon-javascript fa-4x"></i>
+]
+]]
+.column_t2[.vmiddle.nopadding[
+.shadelight[.boxtitle1[
+# END
+
+### [Eueung Mulyana](https://github.com/eueung)
+### http://eueung.github.io/js/angular
+#### JS CodeLabs | [Attribution-ShareAlike CC BY-SA](https://creativecommons.org/licenses/by-sa/4.0/)
+#### 
+]]
+]]
+
+
+
+    </textarea>
+    <script src="https://gnab.github.io/remark/downloads/remark-0.12.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create({highlightLanguage:'javascript', highlightStyle: 'tomorrow', highlightLines: true});
+    </script>
+  </body>
+</html>
