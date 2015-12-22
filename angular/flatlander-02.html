@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Angular.JS</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <style type="text/css">
+  body {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px 0;
+  }
+  .img-thumbnail {
+    margin: 10px auto; 
+  }  
+  li.small-image{
+    width: 50px;
+    margin-bottom: 0 !important;
+  }
+  li.small-image img{
+    width: 100%;
+  }
+  .nopadding { padding: 0 !important; }
+
+  </style>
+</head>
+<body>
+
+<div id="app02" ng-app="store"> 
+<div class="list-group ng-scope" ng-controller="StoreController as store">
+    <div class="list-group-item" ng-repeat="product in store.products">
+      <product-title></product-title>
+      <product-gallery></product-gallery>
+      <product-panels></product-panels>
+    </div>
+</div>
+</div>
+
+
+</body>
+<script src="flatlander-02.js"></script>
+<script src="flatlander-02-products.js"></script>
+</html>

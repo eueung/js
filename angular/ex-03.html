@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html ng-app="ex-03-app">
+<head>
+  <meta charset="utf-8">
+  <title>Angular.JS</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+</head>
+<body>
+  <div ng-controller="GreetingController">
+    <form ng-submit="submit()">
+      <label>Name: <input type="text" ng-model="name"></label>
+    </form>
+    <div>
+      <h1>Hits</h1>
+      <ul>
+        <li ng-repeat="name in names">{{ name | reverse}}</li>
+      </ul>
+    </div>
+  </div>
+</body>
+<script src="ex-03.js"></script>
+</html>

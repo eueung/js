@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Angular.JS</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <style type="text/css">
+  body {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px 0;
+  }
+  .nopadding { padding: 0 !important; }
+
+  </style>
+</head>
+<body>
+
+<div id="app03a" ng-app="store_a"> 
+<div ng-controller="StoreController as store">
+<div ng-repeat="product in store.products">
+  <div ng-hide="product.soldOut">
+    <h2> {{product.name}} </h2>
+    <h3> ${{product.price}} </h3>
+    <p> {{product.description}} </p>
+    <button ng-show="product.canPurchase"> Add to Cart </button>
+  </div>
+</div>
+</div>
+</div>
+
+
+</body>
+<script src="ex-04-2.js"></script>
+</html>
