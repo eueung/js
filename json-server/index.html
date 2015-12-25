@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Javascript Tutorial - JSON Server</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Open+Sans);
+
+body { font-family: 'Open Sans Condensed','Droid Serif','Open Sans', sans-serif; }
+h1, h2, h3, h4 {
+    font-family: 'Yanone Kaffeesatz';
+    font-weight: 400;
+    margin-bottom: 0;
+    margin-top: 10px;
+}
+h1 { font-size: 3.5em; }
+h2 { font-size: 3em; }
+h3 { font-size: 1.6em; }
+h4 { font-size: 1em; }
+.inverse {
+    background: #272822;
+    color: #777872;
+    text-shadow: 0 0 20px #333;
+}
+.inverse h1, .inverse h2 {
+    color: #f3f3f3;
+    line-height: 0.8em;
+}
+
+code { font-family: 'Ubuntu Mono', sans-serif !important; }
+pre code { background-color: #fff; border-top: 5px solid #ddd; border-bottom: 5px solid #ddd; margin-top: 10px;}
+h1 code { font-weight: 300; font-size: 1em !important; background-color: #eee; padding: 0px 5px; border-radius: 5px; }
+
+a {
+    color: #F92672;
+    text-decoration: none;
+}
+.task {
+    float: right;
+    font-size: 0.9em;
+    padding-top: 0.6em;
+}
+.task a {
+    color: #080;
+    text-decoration: none;
+}
+.right {
+    float: right;
+    margin-left: 1em;
+}
+.pushdown {
+    margin-top: 12em;
+}
+
+.done-true {
+  text-decoration: line-through;
+  color: grey;
+}
+
+ul.unstyled,ol.unstyled{margin-left:0;list-style:none;}
+
+.remark-visible .remark-slide-scaler {
+  overflow-y: auto;
+}
+
+.nopadding { padding:0 !important;}
+
+.red    { color: #FF4943; }
+.gray   { color: #787878; }
+.green  { color: #87A558; }
+.blue   { color: #41C8F0; }
+.yellow { color: #DBEC62; }
+.white  { color: #FFFFFF; }
+.or1 {color: #FFD740;}
+.bluelight {color: #B3E5FC;}
+.dark1 {color: #B6B6B6;}
+
+.bold { font-weight: bold; }
+
+pre {
+  background-color: transparent ; 
+  border: 0 ; 
+  border-radius: 0 ;
+  padding: 10px 0; 
+}
+.remark-code {
+  font-size: 14px;
+  line-height: 1.25;
+}
+
+.remark-code-line-highlighted {
+  font-weight: bold;
+  background-color: transparent;
+  text-shadow: 
+      0px 10px 30px rgba(255, 98, 20, .5),
+      10px 0px 30px rgba(255, 98, 20, .5),
+      -10px 0px 30px rgba(255, 98, 20, .5),
+      0px -10px 30px rgba(255, 98, 20, .5);
+}
+.reverse .remark-code-line-highlighted {
+    font-weight: normal !important;
+    color: transparent;
+    text-shadow: 0 0 5px #000;
+    font-size: 1em;
+}
+.reverse .remark-code-line { font-weight: bold; }
+
+.shade {
+    padding: 0;
+}
+
+.shade  {
+    background-color:rgba(0,0,0,0.7);
+    color: white;
+    width: 100%;
+    padding: 1em 0;
+}
+
+.shadelight  {
+    background-color:rgba(0,0,0,0.5);
+    color: white;
+    width: 100%;
+    padding: 0;
+}
+
+.fgtransparent h1 {
+  color:rgba(255,255,255,0.8) !important;
+  text-shadow: none;
+}
+
+.nosplit>div:first-of-type {width: 100%; height:100%; float:left; }
+.split-30>div:first-of-type {width: 30%; height:100%; float:left; }
+.split-30>div:nth-of-type(2) {width: 70%; height:100%; float:right;}
+.split-50>div:first-of-type {width: 50%; height:100%; float:left; }
+.split-50>div:nth-of-type(2) {width: 50%; height:100%; float:right;}
+.column_t1 {
+  background-color: #2aa9df;
+  color: white;
+}
+.column_t1 a {color: #B3E5FC;}
+.column_t1 pre code {
+  -webkit-box-shadow: 0px 0px 55px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 55px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 55px 0px rgba(0,0,0,0.75);  
+}
+.column_t2 {
+}
+
+.uline {text-decoration: underline;}
+
+.vmiddle {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  padding:1em;
+}
+.pushfront {
+    z-index: 2;   
+}
+.remark-slide-content .vmiddle h1 {margin-top: 0;}
+
+.boxtitle1 {
+  padding:1em;
+  text-align: left;
+  border-left: white solid 0.5em;
+  border-right: white solid 0em;
+}
+
+.figplain img {
+  width: 100%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-top: #eee solid 20px;
+  border-bottom: #eee solid 20px;
+}
+.noborder img {border:none !important;}
+
+.figstyle1 img {
+  -webkit-box-shadow: 0px 0px 55px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 55px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 55px 0px rgba(0,0,0,0.75);  
+  width: 100%;
+}
+.figstyle1h img {
+  -webkit-box-shadow: 0px 0px 55px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 55px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 55px 0px rgba(0,0,0,0.75);  
+  max-width: 100%;
+  max-height: 600px;
+}
+.figstyle1h {}
+
+.tab1 table {
+  background: rgba(255, 255, 255, 0.12);
+  border: 4px solid #eeeeee;
+  margin: 0px auto;
+  border-collapse:collapse;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15); }
+
+.tab1 table td, .tab1 table th {
+  border: 1px solid white;
+  padding: 0.25em 1em;
+  }
+
+.tab1 table th {
+  opacity: 1;
+  background-color:#ff6600;
+  vertical-align:middle;
+} 
+.fullwidth, .fullwidth table {width: 100% !important;}
+.fullheight {max-height: 100% !important;}
+
+.tab2 table {
+  background: rgba(255, 255, 255, 0.12);
+  border: 4px solid #eeeeee;
+  margin: 0px auto;
+  border-collapse:collapse;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15); }
+
+.tab2 table td, .tab2 table th {
+  border: 1px solid #eee;
+  padding: 0.25em 1em;
+  }
+
+.tab2 table th {
+  opacity: 1;
+  background-color:#ff6600;
+  vertical-align:middle;
+}  
+.fonth2 {font-size: 3em;}
+.fonth3 {font-size: 2.4em;}
+
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://eueung.github.io/EL5244/mfizz22/font-mfizz.css">
+  </head>
+  <body>
+    <textarea id="source">
+
+
+class: split-30 nopadding
+background-image: url(https://cloud.githubusercontent.com/assets/4231611/11863115/ba62787a-a4c3-11e5-98f8-fdc9c00d7aaf.jpg)
+
+.column_t2.center[.vmiddle[
+.fgtransparent[
+# <i class="icon-javascript fa-4x"></i>
+]
+]]
+.column_t2[.vmiddle.nopadding[
+.shadelight[.boxtitle1[
+### json-server
+# RESTful APIs for Free
+
+### [Eueung Mulyana](https://github.com/eueung)
+### http://eueung.github.io/js/json-server
+#### JS CodeLabs | [Attribution-ShareAlike CC BY-SA](https://creativecommons.org/licenses/by-sa/4.0/)
+#### 
+]]
+]]
+
+---
+class: column_t1 middle
+
+.fonth3[
+.tab1.fullwidth[
+| Agenda   |
+|:-------------:|
+| json-server |
+| Angular.JS Todo App |
+]]
+
+
+---
+class: split-30 nopadding
+background-image: url(https://cloud.githubusercontent.com/assets/4231611/11863115/ba62787a-a4c3-11e5-98f8-fdc9c00d7aaf.jpg)
+
+.column_t2.center[.vmiddle[
+.fgtransparent[
+# <i class="icon-javascript fa-4x"></i>
+]
+]]
+.column_t2[.vmiddle.nopadding[
+.shadelight[.boxtitle1[
+# json-server
+#### 
+]]
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t2[.vmiddle[
+# json-server
+
+```bash
+*$> json-server --watch db-01.json
+
+  \{^_^}/ hi!
+
+  Loading db-01.json
+  Done
+
+  Resources
+* http://localhost:3000/posts
+* http://localhost:3000/comments
+* http://localhost:3000/albums
+* http://localhost:3000/photos
+* http://localhost:3000/users
+* http://localhost:3000/todos
+
+  Home
+  http://localhost:3000
+
+  Type s + enter at any time to create a snapshot of the database
+  Watching...
+```
+
+]]
+.column_t1[.vmiddle[
+### Sample GET Reqs
+
+```bash
+http://localhost:3000/users?id=1&id=2
+
+*http://localhost:3000/users/1/posts
+*http://localhost:3000/posts?userId=1
+
+http://localhost:3000/posts/1/comments
+http://localhost:3000/posts/11/comments?_limit=2
+
+*http://localhost:3000/todos?userId_lte=2
+
+http://localhost:3000/users/1/albums?_limit=2
+http://localhost:3000/photos?albumId_lte=2
+
+*http://localhost:3000/albums/2/photos?_limit=3
+```
+
+]]
+
+---
+class: column_t1 middle 
+
+.figstyle1[
+![](images/fig01.jpg)
+]
+
+---
+class: split-50 nopadding 
+
+.column_t1[.vmiddle[
+### db-01.json
+
+```
+{
+* "posts": [
+    {
+      "userId": 1,
+      "id": 1,
+      "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+      "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+    }, ...
+* ],
+* "comments": [
+    {
+      "postId": 1,
+      "id": 1,
+      "name": "id labore ex et quam laborum",
+      "email": "Eliseo@gardner.biz",
+      "body": "laudantium enim quasi est quidem magnam voluptate ipsam eos\ntempora quo necessitatibus\ndolor quam autem quasi\nreiciendis et nam sapiente accusantium"
+    }, ...
+* ],
+* "albums": [
+    {
+      "userId": 1,
+      "id": 1,
+      "title": "quidem molestiae enim"
+    }, ...
+* ],
+}
+```
+
+]]
+.column_t2[.vmiddle[
+
+```
+* "photos": [
+    { "albumId": 1,
+      "id": 1,
+      "title": "accusamus beatae ad facilis cum similique qui sunt",
+      "url": "http://placehold.it/600/92c952",
+      "thumbnailUrl": "http://placehold.it/150/30ac17"
+    }, ...
+* ], 
+* "users": [
+    { "id": 1,
+      "name": "Leanne Graham",
+      "username": "Bret",
+      "email": "Sincere@april.biz",
+      "address": { ... }
+      },
+      "phone": "1-770-736-8031 x56442",
+      "website": "hildegard.org",
+      "company": { ... }
+    }, ...
+* ],
+* "todos": [
+    { "userId": 1,
+      "id": 1,
+      "title": "delectus aut autem",
+      "completed": false
+    }, ...
+* ]  
+```
+
+
+]]
+
+
+---
+class: column_t1
+# Let's Do This
+####&nbsp;
+
+.tab2.fullwidth[
+| HTTP Method | URI | Endpoint | Action | 
+|-----------|:---:|:--------:|:------:|
+|GET | /users | **users** |Retrieve list of users|
+|POST | /users | **users** |Create a new user|
+|GET | /users/:id | user |Retrieve a user|
+|PUT | /users/:id | user |Update an existing user|
+|PATCH | /users/:id | user |Patch an existing user|
+|DELETE | /users/:id | user |Delete a user|
+]
+
+---
+class: column_t1
+## db-02.json
+####&nbsp;
+
+```
+{
+   "users" : [
+       { "name" : "unyil", "password" : "111", "job" : "coder", "id": 1  },
+       { "name" : "ucrit", "password" : "222", "job" : "designer", "id": 2 },
+       { "name" : "usro",  "password" : "333", "job" : "opisboy", "id": 3 }
+    ]   
+}
+```
+
+####&nbsp;
+## .bluelight[json-server --watch **db-02.json**]
+
+
+---
+class: split-50 nopadding 
+
+.column_t2[.vmiddle[
+### GET /users
+
+```
+*$.ajax('http://localhost:3000/users', {
+* method: 'GET'
+}).then(function(data) {
+  console.log(data);
+});
+```
+
+```bash
+[Object, Object, Object]
+```
+
+]]
+.column_t1[.vmiddle[
+### POST /users
+
+```
+*$.ajax('http://localhost:3000/users', {
+* method: 'POST',
+  data: {
+    name: 'otong',
+    password: 'abc',
+    job: 'nguseup'
+  }
+}).then(function(data) {
+  console.log(data);
+});
+```
+
+```bash
+Object {name: "otong", password: "abc", job: "nguseup", id: 4}
+```
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t1[.vmiddle[
+### GET /users/1
+
+```
+*$.ajax('http://localhost:3000/users/1', {
+* method: 'GET'
+}).then(function(data) {
+  console.log(data);
+});
+```
+
+```bash
+Object {name: "unyil", password: "111", job: "coder", id: 1}
+```
+
+]]
+.column_t2[.vmiddle[
+### GET /users/10
+
+```bash
+GET http://localhost:3000/users/10 404 (Not Found)
+```
+
+.figstyle1[
+![](images/fig02.jpg)
+]
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t2[.vmiddle[
+### PUT /users/4
+
+```
+*$.ajax('http://localhost:3000/users/4', {
+* method: 'PUT',
+  data: {
+*   name: 'totong',
+*   job: 'raja nguseup'
+  }
+}).then(function(data) {
+  console.log(data);
+});
+```
+
+```bash
+Object {name: "totong", job: "raja nguseup", id: 4}
+```
+
+]]
+.column_t1[.vmiddle[
+### PATCH /users/4
+
+```
+*$.ajax('http://localhost:3000/users/4', {
+* method: 'PATCH',
+  data: {
+*   password: 'tonghilap'
+  }
+}).then(function(data) {
+  console.log(data);
+});
+```
+
+```bash
+Object {name: "totong", job: "raja nguseup", id: 4, password: "tonghilap"}
+```
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t1[.vmiddle[
+### DELETE /users/4
+
+```
+*$.ajax('http://localhost:3000/users/4', {
+* method: 'DELETE'
+});
+```
+
+### DELETE /users/10
+
+```bash
+DELETE http://localhost:3000/users/10 404 (Not Found)
+```
+
+]]
+.column_t2[.vmiddle[
+
+.figstyle1[
+![](images/fig03.jpg)
+]
+
+.figstyle1[
+![](images/fig04.jpg)
+]
+
+]]
+
+---
+class: split-30 nopadding
+background-image: url(https://cloud.githubusercontent.com/assets/4231611/11863115/ba62787a-a4c3-11e5-98f8-fdc9c00d7aaf.jpg)
+
+.column_t2.center[.vmiddle[
+.fgtransparent[
+# <i class="icon-javascript fa-4x"></i>
+]
+]]
+.column_t2[.vmiddle.nopadding[
+.shadelight[.boxtitle1[
+# Angular.JS Todo App
+#### Example #6 @ [Angular.JS Tutorial](http://eueung.github.io/js/angular/#12)
+]]
+]]
+
+---
+class: column_t1
+# The APIs
+####&nbsp;
+
+.tab2.fullwidth[
+| HTTP Method | URI | Endpoint | Action | 
+|-----------|:---:|:--------:|:------:|
+|GET | /todos | **todos** |Retrieve list of todos|
+|POST | /todos | **todos** |Create a new todo|
+|PATCH | /todos/:id | todo |Patch an existing todo|
+]
+
+---
+class: column_t1
+## db-03.json
+####&nbsp;
+
+```
+{
+   "users" : [
+       { "name" : "unyil", "password" : "111", "job" : "coder", "id": 1  },
+       { "name" : "ucrit", "password" : "222", "job" : "designer", "id": 2 },
+       { "name" : "usro",  "password" : "333", "job" : "opisboy", "id": 3 }
+    ],   
+   "todos" : [
+       { "userId": 1, "id": 1, "done": false, "text" : "Todo Unyil 1111"  },
+       { "userId": 1, "id": 2, "done": false, "text" : "Todo Unyil 2222" },
+       { "userId": 1, "id": 3, "done": false, "text" : "Todo Unyil 3333"  }
+    ]   
+}
+```
+
+####&nbsp;
+## .bluelight[json-server --watch **db-03.json**]
+
+
+
+---
+class: split-50 nopadding 
+
+.column_t2[.vmiddle[
+
+```
+*   todoList.todos = [];
+
+*   $http.get('http://localhost:3000/todos')
+      .success(function(data) {
+        todoList.todos = data;
+        console.log(data);
+      })
+      .error(function(data) {
+        console.log('Error: ' + data);
+*     });
+
+*   todoList.addTodo = function() {
+*     $http.post('http://localhost:3000/todos', JSON.stringify({text:todoList.todoText, done:false}))
+        .success(function(data) {
+          todoList.todos.push({text:data.text, done:data.done, id: data.id});
+          todoList.todoText = '';
+          console.log(data);
+        })
+        .error(function(data) {
+          console.log('Error: ' + data);
+*       });
+*   };
+```
+
+]]
+.column_t1[.vmiddle[
+# angular-todo.js
+
+```
+*   todoList.updDone = function(idx){ 
+*     $http.patch('http://localhost:3000/todos/' + todoList.todos[idx].id, JSON.stringify({done:todoList.todos[idx].done}))
+        .success(function(data) {
+          console.log(data);
+        })
+        .error(function(data) {
+          console.log('Error: ' + data);
+*       });
+*   };
+```
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t1[.vmiddle[
+# angular-todo.html
+
+]]
+.column_t2[.vmiddle[
+
+```
+<!doctype html>
+<html ng-app="todoApp">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="angular-todo.js"></script>
+    <link rel="stylesheet" href="angular-todo.css">
+  </head>
+  <body>
+    <h2>Todo</h2>
+    <div ng-controller="TodoListController as todoList">
+      <span>{{todoList.remaining()}} of {{todoList.todos.length}} remaining</span>
+      [ <a href="" ng-click="todoList.archive()">archive</a> ]
+      <ul class="unstyled">
+*       <li ng-repeat="todo in todoList.todos track by $index">
+*         <input type="checkbox" ng-model="todo.done" ng-click="todoList.updDone($index)">
+          <span class="done-{{todo.done}}">{{todo.text}}</span>
+        </li>
+      </ul>
+      <form ng-submit="todoList.addTodo()">
+        <input type="text" ng-model="todoList.todoText"  size="30"
+               placeholder="add new todo here">
+        <input class="btn-primary" type="submit" value="add">
+      </form>
+    </div>
+  </body>
+</html>
+```
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t2[.vmiddle[
+
+```
+Object {text: "Lagi-lagi makan", done: false, id: 6}
+Object {text: "Lagi-lagi makan", done: true, id: 6}
+```
+
+]]
+.column_t1[.vmiddle[
+
+.figstyle1[
+![](images/fig05.jpg)
+]
+
+]]
+
+---
+# References
+
+1. [typicode/json-server](https://github.com/typicode/json-server)
+1. [typicode/lowdb](https://github.com/typicode/lowdb)
+1. [typicode/jsonplaceholder](https://github.com/typicode/jsonplaceholder)
+
+
+---
+class: split-30 nopadding
+background-image: url(https://cloud.githubusercontent.com/assets/4231611/11863115/ba62787a-a4c3-11e5-98f8-fdc9c00d7aaf.jpg)
+
+.column_t2.center[.vmiddle[
+.fgtransparent[
+# <i class="icon-javascript fa-4x"></i>
+]
+]]
+.column_t2[.vmiddle.nopadding[
+.shadelight[.boxtitle1[
+# END
+
+### [Eueung Mulyana](https://github.com/eueung)
+### http://eueung.github.io/js/json-server
+#### JS CodeLabs | [Attribution-ShareAlike CC BY-SA](https://creativecommons.org/licenses/by-sa/4.0/)
+#### 
+]]
+]]
+
+
+
+    </textarea>
+    <script src="https://gnab.github.io/remark/downloads/remark-0.12.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create({highlightLanguage:'javascript', highlightStyle: 'tomorrow', highlightLines: true});
+    </script>
+  </body>
+</html>
