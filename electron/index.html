@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Electron.JS - Introduction</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Open+Sans);
+
+body { font-family: 'Open Sans Condensed','Droid Serif','Open Sans', sans-serif; }
+h1, h2, h3, h4 {
+    font-family: 'Yanone Kaffeesatz';
+    font-weight: 400;
+    margin-bottom: 0;
+    margin-top: 10px;
+}
+h1 { font-size: 3.5em; }
+h2 { font-size: 3em; }
+h3 { font-size: 1.6em; }
+h4 { font-size: 1em; }
+.inverse {
+    background: #272822;
+    color: #777872;
+    text-shadow: 0 0 20px #333;
+}
+.inverse h1, .inverse h2 {
+    color: #f3f3f3;
+    line-height: 0.8em;
+}
+
+code { font-family: 'Ubuntu Mono', sans-serif !important; }
+pre code { background-color: #fff; border-top: 5px solid #ddd; border-bottom: 5px solid #ddd; margin-top: 10px;}
+h1 code { font-weight: 300; font-size: 1em !important; background-color: #eee; padding: 0px 5px; border-radius: 5px; }
+
+a {
+    color: #F92672;
+    text-decoration: none;
+}
+.task {
+    float: right;
+    font-size: 0.9em;
+    padding-top: 0.6em;
+}
+.task a {
+    color: #080;
+    text-decoration: none;
+}
+.right {
+    float: right;
+    margin-left: 1em;
+}
+.pushdown {
+    margin-top: 12em;
+}
+
+.done-true {
+  text-decoration: line-through;
+  color: grey;
+}
+
+ul.unstyled,ol.unstyled{margin-left:0;list-style:none;}
+
+.remark-visible .remark-slide-scaler {
+  overflow-y: auto;
+}
+
+.nopadding { padding:0 !important;}
+
+.red    { color: #FF4943; }
+.gray   { color: #787878; }
+.green  { color: #87A558; }
+.blue   { color: #41C8F0; }
+.yellow { color: #DBEC62; }
+.white  { color: #FFFFFF; }
+.or1 {color: #FFD740;}
+.bluelight {color: #B3E5FC;}
+.dark1 {color: #B6B6B6;}
+
+.bold { font-weight: bold; }
+
+pre {
+  background-color: transparent ; 
+  border: 0 ; 
+  border-radius: 0 ;
+  padding: 10px 0; 
+}
+.remark-code {
+  font-size: 14px;
+  line-height: 1.25;
+}
+
+.remark-code-line-highlighted {
+  font-weight: bold;
+  background-color: transparent;
+  text-shadow: 
+      0px 10px 30px rgba(255, 98, 20, .5),
+      10px 0px 30px rgba(255, 98, 20, .5),
+      -10px 0px 30px rgba(255, 98, 20, .5),
+      0px -10px 30px rgba(255, 98, 20, .5);
+}
+.reverse .remark-code-line-highlighted {
+    font-weight: normal !important;
+    color: transparent;
+    text-shadow: 0 0 5px #000;
+    font-size: 1em;
+}
+.reverse .remark-code-line { font-weight: bold; }
+
+.shade {
+    padding: 0;
+}
+
+.shade  {
+    background-color:rgba(0,0,0,0.7);
+    color: white;
+    width: 100%;
+    padding: 1em 0;
+}
+
+.shadelight  {
+    background-color:rgba(0,0,0,0.5);
+    color: white;
+    width: 100%;
+    padding: 0;
+}
+
+.fgtransparent h1 {
+  color:rgba(255,255,255,0.8) !important;
+  text-shadow: none;
+}
+
+.nosplit>div:first-of-type {width: 100%; height:100%; float:left; }
+.split-30>div:first-of-type {width: 30%; height:100%; float:left; }
+.split-30>div:nth-of-type(2) {width: 70%; height:100%; float:right;}
+.split-50>div:first-of-type {width: 50%; height:100%; float:left; }
+.split-50>div:nth-of-type(2) {width: 50%; height:100%; float:right;}
+.column_t1 {
+  background-color: #2aa9df;
+  color: white;
+}
+.column_t1 a {color: #B3E5FC;}
+.column_t1 pre code {
+  -webkit-box-shadow: 0px 0px 55px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 55px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 55px 0px rgba(0,0,0,0.75);  
+}
+.column_t2 {
+}
+
+.uline {text-decoration: underline;}
+
+.vmiddle {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  padding:1em;
+}
+.pushfront {
+    z-index: 2;   
+}
+.remark-slide-content .vmiddle h1 {margin-top: 0;}
+
+.boxtitle1 {
+  padding:1em;
+  text-align: left;
+  border-left: white solid 0.5em;
+  border-right: white solid 0em;
+}
+
+.figplain img {
+  width: 100%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-top: #eee solid 20px;
+  border-bottom: #eee solid 20px;
+}
+.noborder img {border:none !important;}
+
+.figstyle1 img {
+  -webkit-box-shadow: 0px 0px 55px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 55px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 55px 0px rgba(0,0,0,0.75);  
+  width: 100%;
+}
+.figstyle1h img {
+  -webkit-box-shadow: 0px 0px 55px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 55px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 55px 0px rgba(0,0,0,0.75);  
+  max-width: 100%;
+  max-height: 600px;
+}
+.figstyle1h {}
+
+.tab1 table {
+  background: rgba(255, 255, 255, 0.12);
+  border: 4px solid #eeeeee;
+  margin: 0px auto;
+  border-collapse:collapse;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15); }
+
+.tab1 table td, .tab1 table th {
+  border: 1px solid white;
+  padding: 0.25em 1em;
+  }
+
+.tab1 table th {
+  opacity: 1;
+  background-color:#ff6600;
+  vertical-align:middle;
+} 
+.fullwidth, .fullwidth table {width: 100% !important;}
+.fullheight {max-height: 100% !important;}
+
+.tab2 table {
+  background: rgba(255, 255, 255, 0.12);
+  border: 4px solid #eeeeee;
+  margin: 0px auto;
+  border-collapse:collapse;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15); }
+
+.tab2 table td, .tab2 table th {
+  border: 1px solid #eee;
+  padding: 0.25em 1em;
+  }
+
+.tab2 table th {
+  opacity: 1;
+  background-color:#ff6600;
+  vertical-align:middle;
+}  
+.fonth2 {font-size: 3em;}
+.fonth3 {font-size: 2.4em;}
+
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://eueung.github.io/EL5244/mfizz22/font-mfizz.css">
+  </head>
+  <body>
+    <textarea id="source">
+
+
+class: split-30 nopadding
+background-image: url(https://cloud.githubusercontent.com/assets/4231611/11023040/67004252-86a0-11e5-88cb-87a74f7912e4.jpg)
+
+.column_t2.center[.vmiddle[
+.fgtransparent[
+# <i class="icon-javascript fa-4x"></i>
+]
+]]
+.column_t2[.vmiddle.nopadding[
+.shadelight[.boxtitle1[
+# JS - Electron
+
+### [Eueung Mulyana](https://github.com/eueung)
+### http://eueung.github.io/js/electron
+#### JS CodeLabs | [Attribution-ShareAlike CC BY-SA](https://creativecommons.org/licenses/by-sa/4.0/)
+#### 
+]]
+]]
+
+---
+class: column_t1 middle
+
+.fonth3[
+.tab1.fullwidth[
+| Agenda   |
+|:-------------:|
+| Electron Quick Start, Boilerplate |
+| Angular.JS Todo @ Electron |
+| Electron + Photon |
+| Photon Angular Todo-App |
+]]
+
+
+---
+class: split-30 nopadding
+background-image: url(https://cloud.githubusercontent.com/assets/4231611/11023040/67004252-86a0-11e5-88cb-87a74f7912e4.jpg)
+
+.column_t2.center[.vmiddle[
+.fgtransparent[
+# <i class="icon-javascript fa-4x"></i>
+]
+]]
+.column_t2[.vmiddle.nopadding[
+.shadelight[.boxtitle1[
+# Electron Quick Start
+### [atom/electron-quick-start](https://github.com/atom/electron-quick-start)
+]]
+]]
+
+---
+class: column_t1 middle 
+
+.figstyle1[
+![](images/fig01.jpg)
+]
+
+.center[package.json + main.js + index.html]
+
+---
+class: split-50 nopadding 
+
+.column_t2[.vmiddle[
+
+```
+{
+  "name": "electron-quick-start",
+  "version": "1.0.0",
+  "description": "A minimal Electron application",
+* "main": "main.js",
+  "scripts": {
+    "start": "electron main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atom/electron-quick-start.git"
+  },
+  "keywords": [
+    "Electron", "quick", "start", "tutorial"
+  ],
+  "author": "GitHub",
+  "license": "CC0-1.0",
+  "bugs": {
+    "url": "https://github.com/atom/electron-quick-start/issues"
+  },
+  "homepage": "https://github.com/atom/electron-quick-start#readme",
+* "devDependencies": {
+*   "electron-prebuilt": "^0.36.0"
+* }
+}
+```
+
+.center[**package.json**]
+
+]]
+.column_t1[.vmiddle[
+
+```
+'use strict';
+const electron = require('electron');
+const app = electron.app;  
+const BrowserWindow = electron.BrowserWindow;  
+//--------------------------------------
+let mainWindow;
+//--------------------------------------
+app.on('window-all-closed', function() {
+  if (process.platform != 'darwin') {
+    app.quit();
+  }
+});
+//--------------------------------------
+app.on('ready', function() {
+  mainWindow = new BrowserWindow({width: 800, height: 600});
+
+* mainWindow.loadURL('file://' + __dirname + '/index.html');
+  mainWindow.webContents.openDevTools();
+
+  mainWindow.on('closed', function() {
+    mainWindow = null;
+  });
+});
+```
+
+.center[**main.js**]
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t1[.vmiddle[
+#Electron Quick Start
+### package.json + main.js + index.html
+
+]]
+.column_t2[.vmiddle[
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+*   <script></script>   
+  </head>
+
+  <body>
+    <h1>Hello World!</h1>
+*   We are using node <script>document.write(process.versions.node)</script>,
+*   Chrome <script>document.write(process.versions.chrome)</script>,
+*   and Electron <script>document.write(process.versions.electron)</script>.
+  </body>
+</html>
+```
+
+]]
+
+---
+class: split-30 nopadding
+background-image: url(https://cloud.githubusercontent.com/assets/4231611/11023040/67004252-86a0-11e5-88cb-87a74f7912e4.jpg)
+
+.column_t2.center[.vmiddle[
+.fgtransparent[
+# <i class="icon-javascript fa-4x"></i>
+]
+]]
+.column_t2[.vmiddle.nopadding[
+.shadelight[.boxtitle1[
+# Electron Boilerplate
+### [sindresorhus/electron-boilerplate](https://github.com/sindresorhus/electron-boilerplate)
+]]
+]]
+
+---
+class: column_t1 middle 
+
+.figstyle1[
+![](images/fig02.jpg)
+]
+
+.center[package.json + index.js + index.html + index.css]
+
+---
+class: split-50 nopadding 
+
+.column_t2[.vmiddle[
+## package.json
+
+```
+{
+  "name": "app",
+  "productName": "App",
+  "version": "0.0.0",
+  "description": "",
+  "license": "MIT",
+  "repository": "user/repo",
+  "author": { "name": "", "email": "", "url": ""
+  },
+  "electronVersion": "0.36.0",
+  "scripts": {
+    "test": "xo",
+    "start": "electron .",
+    "build": "electron-packager . $npm_package_productName --out=dist --ignore='^/dist$' --prune --asar --all --version=$npm_package_electronVersion"
+  },
+* "files": [ "index.js", "index.html", "index.css"
+  ],
+  "keywords": [ "electron-app", "electron"
+  ], ...
+}
+
+```
+
+]]
+.column_t1[.vmiddle[
+
+```
+  ...
+* "dependencies": {
+*   "electron-debug": "^0.5.0"
+  },
+* "devDependencies": {
+*   "electron-packager": "^5.0.0",
+*   "electron-prebuilt": "^0.36.0",
+    "xo": "^0.12.0"
+  },
+  "xo": {
+    "esnext": true,
+    "envs": [ "node", "browser" ]
+  }
+```
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t1[.vmiddle[
+# index.js
+
+
+
+]]
+.column_t2[.vmiddle[
+
+```
+'use strict';
+const electron = require('electron');
+const app = electron.app;
+//-------------------------------
+require('crash-reporter').start();
+require('electron-debug')();
+//-------------------------------
+let mainWindow;
+//-------------------------------
+function onClosed() { mainWindow = null; }
+//-------------------------------
+function createMainWindow() {
+  const win = new electron.BrowserWindow({ width: 800, height: 600 });
+
+  win.loadURL(`file://${__dirname}/index.html`);
+  win.on('closed', onClosed);
+
+  return win;
+}
+//-------------------------------
+*app.on('window-all-closed', () => {
+  if (process.platform !== 'darwin') { app.quit(); }
+});
+//-------------------------------
+*app.on('activate', () => {
+  if (!mainWindow) { mainWindow = createMainWindow(); }
+});
+//-------------------------------
+*app.on('ready', () => { mainWindow = createMainWindow(); });
+```
+
+]]
+
+---
+class: split-30 nopadding
+background-image: url(https://cloud.githubusercontent.com/assets/4231611/11023040/67004252-86a0-11e5-88cb-87a74f7912e4.jpg)
+
+.column_t2.center[.vmiddle[
+.fgtransparent[
+# <i class="icon-javascript fa-4x"></i>
+]
+]]
+.column_t2[.vmiddle.nopadding[
+.shadelight[.boxtitle1[
+# Angular.JS Todo @ Electron
+### 
+]]
+]]
+
+---
+class: column_t1 middle 
+
+.figstyle1[
+![](images/fig03.jpg)
+]
+
+.center[]
+
+---
+class: column_t1 middle 
+
+.figstyle1[
+![](images/fig04.jpg)
+]
+
+.center[]
+
+
+---
+class: split-50 nopadding 
+
+.column_t2[.vmiddle[
+
+```
+{
+  "name": "app-03",
+  "version": "1.0.0",
+  "description": "A minimal Electron application",
+* "main": "main.js",
+  "devDependencies": {
+    "electron-prebuilt": "^0.36.0"
+  },
+* "dependencies": {
+*   "lowdb": "^0.11.2"
+  }
+}
+```
+
+.center[package.json]
+
+]]
+.column_t1[.vmiddle[
+
+```
+'use strict';
+const electron = require('electron');
+const app = electron.app;  
+const BrowserWindow = electron.BrowserWindow;  
+//--------------------------------------
+let mainWindow;
+//--------------------------------------
+*app.on('window-all-closed', function() {
+  if (process.platform != 'darwin') {
+    app.quit();
+  }
+});
+//--------------------------------------
+*app.on('ready', function() {
+  mainWindow = new BrowserWindow({width: 800, height: 600});
+
+  mainWindow.loadURL('file://' + __dirname + '/angular-offline-todo.html');
+* mainWindow.setMenu(null);
+
+  mainWindow.on('closed', function() {
+    mainWindow = null;
+  });
+});
+```
+
+.center[main.js]
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t1[.vmiddle[
+
+```
+(function () {
+  'use strict';
+
+* angular.module('todoApp', [])
+*   .controller('todoListController', [TodoListController]);
+
+  function TodoListController() {
+    var todoList = this;
+*   todoList.todos = [];
+*   var low = require('lowdb');
+*   var storage = require('lowdb/file-sync');
+*   todoList.db = low('app-03/db.json', { storage });
+*   getAllTodos();
+ 
+*   todoList.addTodo = function() {
+*     var varid = todoList.db('todos').size();
+*     while(todoList.db('todos').find({ id: varid })) { varid += 1; }
+
+*     var data = { id: varid, text: todoList.todoText, done:false};
+*     todoList.db('todos').push(data);
+
+*     todoList.todos.push(data);
+      todoList.todoText = '';
+    };
+ 
+    todoList.remaining = function() {
+      var count = 0;
+      angular.forEach(todoList.todos, function(todo) {
+        count += todo.done ? 0 : 1;
+      });
+      return count;
+    };
+```
+
+]]
+.column_t2[.vmiddle[
+### angular-offline-todo.js
+
+```
+    todoList.archive = function() {
+      var oldTodos = todoList.todos;
+      todoList.todos = [];
+      angular.forEach(oldTodos, function(todo) {
+        if (!todo.done) todoList.todos.push(todo);
+      });
+    };
+
+*   todoList.updDone = function(idx){ 
+*     var data = todoList.db('todos')
+*                        .chain()
+*                        .find({ id: todoList.todos[idx].id })
+*                        .assign({ done: todoList.todos[idx].done})
+*                        .value();
+    };
+
+*   function getAllTodos() {
+*     todoList.todos = todoList.db('todos').cloneDeep();
+    };
+  }
+
+})();
+```
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t2[.vmiddle[
+
+```html
+<!doctype html>
+<html ng-app="todoApp">
+  <head>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <!-- <script src="angular-offline-todo-service.js"></script> -->
+    <script src="angular-offline-todo.js"></script>
+    <link rel="stylesheet" href="angular-offline-todo.css">
+  </head>
+  <body>
+    <h2>Todo</h2>
+*   <div ng-controller="todoListController as todoList">
+      <span>{{todoList.remaining()}} of {{todoList.todos.length}} remaining</span>
+      [ <a href="" ng-click="todoList.archive()">archive</a> ]
+      <ul class="unstyled">
+*       <li ng-repeat="todo in todoList.todos track by $index">
+*         <input type="checkbox" ng-model="todo.done" ng-click="todoList.updDone($index)">
+          <span class="done-{{todo.done}}">{{todo.text}}</span>
+        </li>
+      </ul>
+      <form ng-submit="todoList.addTodo()">
+        <input type="text" ng-model="todoList.todoText"  size="30"
+               placeholder="add new todo here">
+        <input class="btn-primary" type="submit" value="add">
+      </form>
+    </div>
+  </body>
+</html>
+```
+
+]]
+.column_t1[.vmiddle[
+
+## angular-offline-todo.html
+
+]]
+
+---
+class: split-30 nopadding
+background-image: url(https://cloud.githubusercontent.com/assets/4231611/11023040/67004252-86a0-11e5-88cb-87a74f7912e4.jpg)
+
+.column_t2.center[.vmiddle[
+.fgtransparent[
+# <i class="icon-javascript fa-4x"></i>
+]
+]]
+.column_t2[.vmiddle.nopadding[
+.shadelight[.boxtitle1[
+# Electron + Photon
+### 
+]]
+]]
+
+---
+class: column_t1 middle 
+
+.figstyle1[
+![](images/fig05.jpg)
+]
+
+.center[]
+
+---
+class: split-50 nopadding 
+
+.column_t2[.vmiddle[
+## Photon Template App
+
+```
+{
+  "name": "proton-template-app",
+  "version": "1.0.0",
+  "description": "A simple template app for Proton",
+* "main": "app.js",
+  "author": "Connor Sears",
+  "scripts": {
+    "start": "electron ."
+  }
+}
+```
+
+.center[package.json]
+
+]]
+.column_t1[.vmiddle[
+
+```
+var app = require('app');  
+var BrowserWindow = require('browser-window');  
+//-------------------------------------
+var mainWindow = null;
+//-------------------------------------
+*app.on('window-all-closed', function() {
+  if (process.platform != 'darwin') {
+    app.quit();
+  }
+});
+//-------------------------------------
+*app.on('ready', function() {
+  mainWindow = new BrowserWindow({
+    width: 800,
+    height: 600,
+    'min-width': 480,
+    'min-height': 360,
+    'accept-first-mouse': true,
+    'title-bar-style': 'hidden'
+  });
+
+  mainWindow.loadURL('file://' + __dirname + '/index.html');
+  mainWindow.setMenu(null);
+  
+  mainWindow.on('closed', function() {
+    mainWindow = null;
+  });
+});
+```
+
+.center[app.js]
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t1[.vmiddle[
+## Photon Template App
+### .bluelight[package.json + app.js]
+### .bluelight[index.html + js/menu.js]
+
+]]
+.column_t2[.vmiddle[
+
+```
+var remote = require('remote')
+var Menu = remote.require('menu')
+var MenuItem = remote.require('menu-item')
+//---------------------------------
+var menu = new Menu()
+*menu.append(new MenuItem({
+  label: 'Delete',
+  click: function() {
+    alert('Deleted')
+  }
+}));
+//---------------------------------
+*menu.append(new MenuItem({
+  label: 'More Info...',
+  click: function() {
+    alert('Here is more information')
+  }
+}));
+//---------------------------------
+*window.addEventListener('contextmenu', function (e) {
+* e.preventDefault();
+* menu.popup(remote.getCurrentWindow());
+*}, false);
+```
+
+.center[js/menu.js]
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t2[.vmiddle[
+## index.html
+
+```
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Photon</title>
+    <link rel="stylesheet" href="../css/photon.min.css">
+    <script src="js/menu.js" charset="utf-8"></script>
+  </head>
+  <body>
+*   <div class="window">
+
+*     <header class="toolbar toolbar-header">
+        <h1 class="title">Photon</h1>
+*     </header>
+
+*     <div class="window-content">
+*       <div class="pane-group">
+        ...
+*       </div>
+*     </div>
+*   </div>
+  </body>
+</html>
+```
+
+]]
+.column_t1[.vmiddle[
+
+```html
+*<div class="pane pane-sm sidebar">
+* <nav class="nav-group">
+    <h5 class="nav-group-title">Favorites</h5>
+    <span class="nav-group-item"> <span class="icon icon-home"></span> connors </span>
+    <span class="nav-group-item active"> <span class="icon icon-light-up"></span> Photon </span>
+    <span class="nav-group-item"> <span class="icon icon-download"></span> Downloads </span>
+    <span class="nav-group-item"> <span class="icon icon-folder"></span> Documents </span>
+    <span class="nav-group-item"> <span class="icon icon-window"></span> Applications </span>
+    <span class="nav-group-item"> <span class="icon icon-signal"></span> AirDrop </span>
+    <span class="nav-group-item"> <span class="icon icon-monitor"></span> Desktop </span>
+* </nav>
+*</div>
+
+*<div class="pane">
+* <table class="table-striped">
+    <thead>
+      <tr> <th>Name</th> <th>Kind</th> <th>Date Modified</th> <th>Author</th> </tr>
+    </thead>
+    <tbody>
+      <tr> <td>bars.scss</td> <td>Document</td> <td>Oct 13, 2015</td> <td>connors</td> </tr>
+      ...
+      <tr> <td>base.scss</td> <td>Document</td> <td>Oct 13, 2015</td> <td>connors</td> </tr>
+
+    </tbody>
+* </table>
+*</div>
+```
+
+]]
+
+---
+class: split-30 nopadding
+background-image: url(https://cloud.githubusercontent.com/assets/4231611/11023040/67004252-86a0-11e5-88cb-87a74f7912e4.jpg)
+
+.column_t2.center[.vmiddle[
+.fgtransparent[
+# <i class="icon-javascript fa-4x"></i>
+]
+]]
+.column_t2[.vmiddle.nopadding[
+.shadelight[.boxtitle1[
+# Photon Angular Todo-App
+### 
+]]
+]]
+
+---
+class: column_t1 middle 
+
+.figstyle1[
+![](images/fig06.jpg)
+]
+
+.center[]
+
+
+---
+class: split-50 nopadding 
+
+.column_t2[.vmiddle[
+
+```
+# app.js
+*mainWindow.loadURL('file://' + __dirname + '/angular-offline-todo.html');
+
+# angular-offline-todo.js
+*todoList.db = low('app-05/app/db.json', { storage });
+```
+
+```css
+# angular-offline-todo.css
+
+*.margin10 {
+  margin: 10px; 
+  width: inherit !important;
+}
+```
+
+]]
+.column_t1[.vmiddle[
+# Minor Changes
+### .bluelight[app.js]
+### .bluelight[angular-offline-todo.js]
+### .bluelight[angular-offline-todo.css]
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t1[.vmiddle[
+### angular-offline-todo.html
+
+```html
+<!doctype html>
+<html ng-app="todoApp">
+  <head>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="angular-offline-todo.js"></script>
+    <link rel="stylesheet" href="angular-offline-todo.css">
+
+    <link rel="stylesheet" href="../css/photon.min.css">
+    <script src="js/menu.js" charset="utf-8"></script>
+  </head>
+  <body>
+
+*   <div class="window" ng-controller="todoListController as todoList">
+
+*     <header class="toolbar toolbar-header">
+        <h1 class="title">Photon Angular Todo.App</h1>
+*     </header>
+
+*     ...
+*   </div>  
+
+  </body>
+</html>
+```
+
+]]
+.column_t2[.vmiddle[
+
+```html
+*<div class="window-content">
+  <div class="pane-group">
+
+*   <table class="table-striped">
+      <thead>
+        <tr> <th>DONE</th> <th>Todo</th> </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="todo in todoList.todos track by $index">
+          <td><input type="checkbox" ng-model="todo.done" ng-click="todoList.updDone($index)"></td>
+          <td><span class="done-{{todo.done}}">{{todo.text}}</span></td>
+        </tr>
+      </tbody>
+*   </table>
+
+  </div>
+*</div>
+
+*<footer class="toolbar toolbar-footer">
+  <div class="toolbar-actions">
+      <form ng-submit="todoList.addTodo()">
+        <span class="pull-left margin10">{{todoList.remaining()}} of {{todoList.todos.length}} remaining [ <a href="" ng-click="todoList.archive()">archive</a> ]</span>
+        
+        <input class="form-control btn btn-primary pull-right margin10" type="submit" value="ADD">
+        <input type="text" class="form-control pull-right margin10" ng-model="todoList.todoText"  size="30"
+               placeholder="add new todo here">
+      </form>
+  </div>
+*</footer>
+```
+
+]]
+
+---
+# References
+
+1. [Electron](http://electron.atom.io/)
+1. [sindresorhus/awesome-electron](https://github.com/sindresorhus/awesome-electron)
+1. [Photon · Components](http://photonkit.com/components/)
+
+---
+class: split-30 nopadding
+background-image: url(https://cloud.githubusercontent.com/assets/4231611/11023040/67004252-86a0-11e5-88cb-87a74f7912e4.jpg)
+
+.column_t2.center[.vmiddle[
+.fgtransparent[
+# <i class="icon-javascript fa-4x"></i>
+]
+]]
+.column_t2[.vmiddle.nopadding[
+.shadelight[.boxtitle1[
+# END
+
+### [Eueung Mulyana](https://github.com/eueung)
+### http://eueung.github.io/js/electron
+#### JS CodeLabs | [Attribution-ShareAlike CC BY-SA](https://creativecommons.org/licenses/by-sa/4.0/)
+#### 
+]]
+]]
+
+
+
+    </textarea>
+    <script src="https://gnab.github.io/remark/downloads/remark-0.12.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create({highlightLanguage:'javascript', highlightStyle: 'tomorrow', highlightLines: true});
+    </script>
+  </body>
+</html>
