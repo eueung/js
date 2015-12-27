@@ -1,0 +1,7 @@
+{
+   "users" : [
+   	   { "name" : "unyil", "password" : "111", "job" : "coder", "id": 1  },
+   	   { "name" : "ucrit", "password" : "222", "job" : "designer", "id": 2 },
+   	   { "name" : "usro",  "password" : "333", "job" : "opisboy", "id": 3 }
+   	]   
+}

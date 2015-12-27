@@ -1,0 +1,292 @@
+{
+  "posts": [
+    {
+      "userId": 1,
+      "id": 1,
+      "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+      "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+    },
+    {
+      "userId": 1,
+      "id": 2,
+      "title": "qui est esse",
+      "body": "est rerum tempore vitae\nsequi sint nihil reprehenderit dolor beatae ea dolores neque\nfugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis\nqui aperiam non debitis possimus qui neque nisi nulla"
+    },
+    {
+      "userId": 2,
+      "id": 11,
+      "title": "et ea vero quia laudantium autem",
+      "body": "delectus reiciendis molestiae occaecati non minima eveniet qui voluptatibus\naccusamus in eum beatae sit\nvel qui neque voluptates ut commodi qui incidunt\nut animi commodi"
+    },
+    {
+      "userId": 2,
+      "id": 12,
+      "title": "in quibusdam tempore odit est dolorem",
+      "body": "itaque id aut magnam\npraesentium quia et ea odit et ea voluptas et\nsapiente quia nihil amet occaecati quia id voluptatem\nincidunt ea est distinctio odio"
+    }
+  ],
+  "comments": [
+    {
+      "postId": 1,
+      "id": 1,
+      "name": "id labore ex et quam laborum",
+      "email": "Eliseo@gardner.biz",
+      "body": "laudantium enim quasi est quidem magnam voluptate ipsam eos\ntempora quo necessitatibus\ndolor quam autem quasi\nreiciendis et nam sapiente accusantium"
+    },
+    {
+      "postId": 1,
+      "id": 2,
+      "name": "quo vero reiciendis velit similique earum",
+      "email": "Jayne_Kuhic@sydney.com",
+      "body": "est natus enim nihil est dolore omnis voluptatem numquam\net omnis occaecati quod ullam at\nvoluptatem error expedita pariatur\nnihil sint nostrum voluptatem reiciendis et"
+    },
+    {
+      "postId": 2,
+      "id": 6,
+      "name": "et fugit eligendi deleniti quidem qui sint nihil autem",
+      "email": "Presley.Mueller@myrl.com",
+      "body": "doloribus at sed quis culpa deserunt consectetur qui praesentium\naccusamus fugiat dicta\nvoluptatem rerum ut voluptate autem\nvoluptatem repellendus aspernatur dolorem in"
+    },
+    {
+      "postId": 2,
+      "id": 7,
+      "name": "repellat consequatur praesentium vel minus molestias voluptatum",
+      "email": "Dallas@ole.me",
+      "body": "maiores sed dolores similique labore et inventore et\nquasi temporibus esse sunt id et\neos voluptatem aliquam\naliquid ratione corporis molestiae mollitia quia et magnam dolor"
+    },
+    {
+      "postId": 11,
+      "id": 51,
+      "name": "molestias et odio ut commodi omnis ex",
+      "email": "Laurie@lincoln.us",
+      "body": "perferendis omnis esse\nvoluptate sit mollitia sed perferendis\nnemo nostrum qui\nvel quis nisi doloribus animi odio id quas"
+    },
+    {
+      "postId": 11,
+      "id": 52,
+      "name": "esse autem dolorum",
+      "email": "Abigail.OConnell@june.org",
+      "body": "et enim voluptatem totam laudantium\nimpedit nam labore repellendus enim earum aut\nconsectetur mollitia fugit qui repellat expedita sunt\naut fugiat vel illo quos aspernatur ducimus"
+    },
+    {
+      "postId": 12,
+      "id": 56,
+      "name": "et dolorem corrupti sed molestias",
+      "email": "Vince_Crist@heidi.biz",
+      "body": "cum esse odio nihil reiciendis illum quaerat\nest facere quia\noccaecati sit totam fugiat in beatae\nut occaecati unde vitae nihil quidem consequatur"
+    },
+    {
+      "postId": 12,
+      "id": 57,
+      "name": "qui quidem sed",
+      "email": "Darron.Nikolaus@eulah.me",
+      "body": "dolorem facere itaque fuga odit autem\nperferendis quisquam quis corrupti eius dicta\nrepudiandae error esse itaque aut\ncorrupti sint consequatur aliquid"
+    }
+  ],
+  "albums": [
+    {
+      "userId": 1,
+      "id": 1,
+      "title": "quidem molestiae enim"
+    },
+    {
+      "userId": 1,
+      "id": 2,
+      "title": "sunt qui excepturi placeat culpa"
+    },
+    {
+      "userId": 2,
+      "id": 11,
+      "title": "quam nostrum impedit mollitia quod et dolor"
+    },
+    {
+      "userId": 2,
+      "id": 12,
+      "title": "consequatur autem doloribus natus consectetur"
+    }  
+  ],
+  "photos": [
+    {
+      "albumId": 1,
+      "id": 1,
+      "title": "accusamus beatae ad facilis cum similique qui sunt",
+      "url": "http://placehold.it/600/92c952",
+      "thumbnailUrl": "http://placehold.it/150/30ac17"
+    },
+    {
+      "albumId": 1,
+      "id": 2,
+      "title": "reprehenderit est deserunt velit ipsam",
+      "url": "http://placehold.it/600/771796",
+      "thumbnailUrl": "http://placehold.it/150/dff9f6"
+    },
+    {
+      "albumId": 1,
+      "id": 3,
+      "title": "officia porro iure quia iusto qui ipsa ut modi",
+      "url": "http://placehold.it/600/24f355",
+      "thumbnailUrl": "http://placehold.it/150/1941e9"
+    },
+    {
+      "albumId": 2,
+      "id": 51,
+      "title": "non sunt voluptatem placeat consequuntur rem incidunt",
+      "url": "http://placehold.it/600/8e973b",
+      "thumbnailUrl": "http://placehold.it/150/bb7f4"
+    },
+    {
+      "albumId": 2,
+      "id": 52,
+      "title": "eveniet pariatur quia nobis reiciendis laboriosam ea",
+      "url": "http://placehold.it/600/121fa4",
+      "thumbnailUrl": "http://placehold.it/150/9ed3d5"
+    },
+    {
+      "albumId": 2,
+      "id": 53,
+      "title": "soluta et harum aliquid officiis ab omnis consequatur",
+      "url": "http://placehold.it/600/6efc5f",
+      "thumbnailUrl": "http://placehold.it/150/f349d6"
+    },
+    {
+      "albumId": 11,
+      "id": 501,
+      "title": "asperiores exercitationem voluptates qui amet quae necessitatibus facere",
+      "url": "http://placehold.it/600/cda4c0",
+      "thumbnailUrl": "http://placehold.it/150/cca74"
+    },
+    {
+      "albumId": 11,
+      "id": 502,
+      "title": "omnis qui sit et",
+      "url": "http://placehold.it/600/74e371",
+      "thumbnailUrl": "http://placehold.it/150/e9faf2"
+    },
+    {
+      "albumId": 11,
+      "id": 503,
+      "title": "modi voluptas fugiat eos",
+      "url": "http://placehold.it/600/9022fb",
+      "thumbnailUrl": "http://placehold.it/150/c50acb"
+    },
+    {
+      "albumId": 12,
+      "id": 551,
+      "title": "eveniet debitis nihil",
+      "url": "http://placehold.it/600/21e334",
+      "thumbnailUrl": "http://placehold.it/150/809c78"
+    },
+    {
+      "albumId": 12,
+      "id": 552,
+      "title": "odit culpa optio nesciunt",
+      "url": "http://placehold.it/600/b56655",
+      "thumbnailUrl": "http://placehold.it/150/c540a"
+    },
+    {
+      "albumId": 12,
+      "id": 553,
+      "title": "doloribus illo aperiam ut ducimus",
+      "url": "http://placehold.it/600/6f666f",
+      "thumbnailUrl": "http://placehold.it/150/152619"
+    }    
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "Leanne Graham",
+      "username": "Bret",
+      "email": "Sincere@april.biz",
+      "address": {
+        "street": "Kulas Light",
+        "suite": "Apt. 556",
+        "city": "Gwenborough",
+        "zipcode": "92998-3874",
+        "geo": {
+          "lat": "-37.3159",
+          "lng": "81.1496"
+        }
+      },
+      "phone": "1-770-736-8031 x56442",
+      "website": "hildegard.org",
+      "company": {
+        "name": "Romaguera-Crona",
+        "catchPhrase": "Multi-layered client-server neural-net",
+        "bs": "harness real-time e-markets"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Ervin Howell",
+      "username": "Antonette",
+      "email": "Shanna@melissa.tv",
+      "address": {
+        "street": "Victor Plains",
+        "suite": "Suite 879",
+        "city": "Wisokyburgh",
+        "zipcode": "90566-7771",
+        "geo": {
+          "lat": "-43.9509",
+          "lng": "-34.4618"
+        }
+      },
+      "phone": "010-692-6593 x09125",
+      "website": "anastasia.net",
+      "company": {
+        "name": "Deckow-Crist",
+        "catchPhrase": "Proactive didactic contingency",
+        "bs": "synergize scalable supply-chains"
+      }
+    }
+  ],
+  "todos": [
+    {
+      "userId": 1,
+      "id": 1,
+      "title": "delectus aut autem",
+      "completed": false
+    },
+    {
+      "userId": 1,
+      "id": 2,
+      "title": "quis ut nam facilis et officia qui",
+      "completed": false
+    },
+    {
+      "userId": 1,
+      "id": 3,
+      "title": "fugiat veniam minus",
+      "completed": false
+    },
+    {
+      "userId": 1,
+      "id": 4,
+      "title": "et porro tempora",
+      "completed": true
+    },
+    {
+      "userId": 2,
+      "id": 21,
+      "title": "suscipit repellat esse quibusdam voluptatem incidunt",
+      "completed": false
+    },
+    {
+      "userId": 2,
+      "id": 22,
+      "title": "distinctio vitae autem nihil ut molestias quo",
+      "completed": true
+    },
+    {
+      "userId": 2,
+      "id": 23,
+      "title": "et itaque necessitatibus maxime molestiae qui quas velit",
+      "completed": false
+    },
+    {
+      "userId": 2,
+      "id": 24,
+      "title": "adipisci non ad dicta qui amet quaerat doloribus ea",
+      "completed": false
+    }    
+  ]  
+}
