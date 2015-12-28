@@ -1,0 +1,16 @@
+{
+  "name": "proton todo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "author": "",
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron-prebuilt": "^0.36.0"
+  },
+  "dependencies": {
+    "lowdb": "^0.11.2"
+  }  
+}

@@ -1,0 +1,55 @@
+<!doctype html>
+<html ng-app="todoApp">
+  <head>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="angular-offline-todo.js"></script>
+    <link rel="stylesheet" href="angular-offline-todo.css">
+
+    <link rel="stylesheet" href="../css/photon.min.css">
+    <script src="js/menu.js" charset="utf-8"></script>
+  </head>
+  <body>
+
+    <div class="window" ng-controller="todoListController as todoList">
+
+      <header class="toolbar toolbar-header">
+        <h1 class="title">Photon Angular Todo.App</h1>
+      </header>
+
+      <div class="window-content">
+        <div class="pane-group">
+
+          <table class="table-striped">
+            <thead>
+              <tr>
+                <th>DONE</th>
+                <th>Todo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="todo in todoList.todos track by $index">
+                <td><input type="checkbox" ng-model="todo.done" ng-click="todoList.updDone($index)"></td>
+                <td><span class="done-{{todo.done}}">{{todo.text}}</span></td>
+              </tr>
+            </tbody>
+          </table>
+      
+        </div>
+      </div>
+
+      <footer class="toolbar toolbar-footer">
+        <div class="toolbar-actions">
+            <form ng-submit="todoList.addTodo()">
+              <span class="pull-left margin10">{{todoList.remaining()}} of {{todoList.todos.length}} remaining [ <a href="" ng-click="todoList.archive()">archive</a> ]</span>
+              
+              <input class="form-control btn btn-primary pull-right margin10" type="submit" value="ADD">
+              <input type="text" class="form-control pull-right margin10" ng-model="todoList.todoText"  size="30"
+                     placeholder="add new todo here">
+            </form>
+        </div>
+      </footer>
+
+    </div>  
+
+  </body>
+</html>

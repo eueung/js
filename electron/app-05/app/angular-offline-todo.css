@@ -1,0 +1,10 @@
+.done-true {
+  text-decoration: line-through;
+  color: grey;
+}
+ul.unstyled,ol.unstyled{margin-left:0;list-style:none; padding: 0;}
+
+.margin10 {
+  margin: 10px;	
+  width: inherit !important;
+}

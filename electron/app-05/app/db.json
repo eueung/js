@@ -1,0 +1,57 @@
+{
+  "users": [
+    {
+      "name": "unyil",
+      "password": "111",
+      "job": "coder",
+      "id": 1
+    },
+    {
+      "name": "ucrit",
+      "password": "222",
+      "job": "designer",
+      "id": 2
+    },
+    {
+      "name": "usro",
+      "password": "333",
+      "job": "opisboy",
+      "id": 3
+    }
+  ],
+  "todos": [
+    {
+      "userId": 1,
+      "id": 1,
+      "done": false,
+      "text": "Todo Unyil 1111"
+    },
+    {
+      "userId": 1,
+      "id": 2,
+      "done": false,
+      "text": "Todo Unyil 2222"
+    },
+    {
+      "userId": 1,
+      "id": 3,
+      "done": true,
+      "text": "Todo Unyil 3333"
+    },
+    {
+      "id": 4,
+      "text": "Lunch",
+      "done": false
+    },
+    {
+      "id": 5,
+      "text": "Lunch again",
+      "done": false
+    },
+    {
+      "id": 6,
+      "text": "Big lunch",
+      "done": true
+    }
+  ]
+}
