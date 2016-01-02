@@ -1,0 +1,1854 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React + Flux</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Open+Sans);
+
+body { font-family: 'Open Sans Condensed','Droid Serif','Open Sans', sans-serif; }
+h1, h2, h3, h4 {
+    font-family: 'Yanone Kaffeesatz';
+    font-weight: 400;
+    margin-bottom: 0;
+    margin-top: 10px;
+}
+h1 { font-size: 3.5em; }
+h2 { font-size: 3em; }
+h3 { font-size: 1.6em; }
+h4 { font-size: 1em; }
+.inverse {
+    background: #272822;
+    color: #777872;
+    text-shadow: 0 0 20px #333;
+}
+.inverse h1, .inverse h2 {
+    color: #f3f3f3;
+    line-height: 0.8em;
+}
+
+code { font-family: 'Ubuntu Mono', sans-serif !important; }
+pre code { background-color: #fff; border-top: 5px solid #ddd; border-bottom: 5px solid #ddd; margin-top: 10px;}
+h1 code { font-weight: 300; font-size: 1em !important; background-color: #eee; padding: 0px 5px; border-radius: 5px; }
+
+a {
+    color: #F92672;
+    text-decoration: none;
+}
+.task {
+    float: right;
+    font-size: 0.9em;
+    padding-top: 0.6em;
+}
+.task a {
+    color: #080;
+    text-decoration: none;
+}
+.right {
+    float: right;
+    margin-left: 1em;
+}
+.pushdown {
+    margin-top: 12em;
+}
+
+.done-true {
+  text-decoration: line-through;
+  color: grey;
+}
+
+ul.unstyled,ol.unstyled{margin-left:0;list-style:none;}
+
+.remark-visible .remark-slide-scaler {
+  overflow-y: auto;
+}
+
+.nopadding { padding:0 !important;}
+
+.red    { color: #FF4943; }
+.gray   { color: #787878; }
+.green  { color: #87A558; }
+.blue   { color: #41C8F0; }
+.yellow { color: #DBEC62; }
+.white  { color: #FFFFFF; }
+.or1 {color: #FFD740;}
+.bluelight {color: #B3E5FC;}
+.dark1 {color: #B6B6B6;}
+
+.bold { font-weight: bold; }
+
+pre {
+  background-color: transparent ; 
+  border: 0 ; 
+  border-radius: 0 ;
+  padding: 10px 0; 
+}
+.remark-code {
+  font-size: 14px;
+  line-height: 1.25;
+}
+
+.remark-code-line-highlighted {
+  font-weight: bold;
+  background-color: transparent;
+  text-shadow: 
+      0px 10px 30px rgba(255, 98, 20, .5),
+      10px 0px 30px rgba(255, 98, 20, .5),
+      -10px 0px 30px rgba(255, 98, 20, .5),
+      0px -10px 30px rgba(255, 98, 20, .5);
+}
+.reverse .remark-code-line-highlighted {
+    font-weight: normal !important;
+    color: transparent;
+    text-shadow: 0 0 5px #000;
+    font-size: 1em;
+}
+.reverse .remark-code-line { font-weight: bold; }
+
+.shade {
+    padding: 0;
+}
+
+.shade  {
+    background-color:rgba(0,0,0,0.7);
+    color: white;
+    width: 100%;
+    padding: 1em 0;
+}
+
+.shadelight  {
+    background-color:rgba(0,0,0,0.5);
+    color: white;
+    width: 100%;
+    padding: 0;
+}
+
+.fgtransparent h1 {
+  color:rgba(255,255,255,0.8) !important;
+  text-shadow: none;
+  text-align: right;
+}
+
+.nosplit>div:first-of-type {width: 100%; height:100%; float:left; }
+.split-30>div:first-of-type {width: 30%; height:100%; float:left; }
+.split-30>div:nth-of-type(2) {width: 70%; height:100%; float:right;}
+.split-50>div:first-of-type {width: 50%; height:100%; float:left; }
+.split-50>div:nth-of-type(2) {width: 50%; height:100%; float:right;}
+.split-60>div:first-of-type {width: 60%; height:100%; float:left; }
+.split-60>div:nth-of-type(2) {width: 40%; height:100%; float:right;}
+.split-70>div:first-of-type {width: 70%; height:100%; float:left; }
+.split-70>div:nth-of-type(2) {width: 30%; height:100%; float:right;}
+.column_t1 {
+  background-color: #2aa9df;
+  color: white;
+}
+.column_t1 a {color: #B3E5FC;}
+.column_t1 pre code {
+  -webkit-box-shadow: 0px 0px 55px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 55px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 55px 0px rgba(0,0,0,0.75);  
+}
+.column_t2 {
+}
+
+.uline {text-decoration: underline;}
+
+.vmiddle {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  padding:1em;
+}
+.pushfront {
+    z-index: 2;   
+}
+.remark-slide-content .vmiddle h1 {margin-top: 0;}
+
+.boxtitle1 {
+  padding:1em;
+  text-align: left;
+  border-left: white solid 0.5em;
+  border-right: white solid 0em;
+}
+
+.boxtitle2 {
+  padding:1em;
+  text-align: center;
+  border-left: white solid 0em;
+  border-right: white solid 0.5em;
+}
+
+.figplain img {
+  width: 100%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-top: #eee solid 20px;
+  border-bottom: #eee solid 20px;
+}
+.noborder img {border:none !important;}
+
+.figstyle1 img {
+  -webkit-box-shadow: 0px 0px 55px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 55px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 55px 0px rgba(0,0,0,0.75);  
+  width: 100%;
+}
+.figstyle1h img {
+  -webkit-box-shadow: 0px 0px 55px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 55px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 55px 0px rgba(0,0,0,0.75);  
+  max-width: 100%;
+  max-height: 600px;
+}
+.figstyle1h {}
+
+.tab1 table {
+  background: rgba(255, 255, 255, 0.12);
+  border: 4px solid #eeeeee;
+  margin: 0px auto;
+  border-collapse:collapse;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15); }
+
+.tab1 table td, .tab1 table th {
+  border: 1px solid white;
+  padding: 0.25em 1em;
+  }
+
+.tab1 table th {
+  opacity: 1;
+  background-color:#ff6600;
+  vertical-align:middle;
+} 
+.fullwidth, .fullwidth table {width: 100% !important;}
+.fullheight {max-height: 100% !important;}
+
+.tab2 table {
+  background: rgba(255, 255, 255, 0.12);
+  border: 4px solid #eeeeee;
+  margin: 0px auto;
+  border-collapse:collapse;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15); }
+
+.tab2 table td, .tab2 table th {
+  border: 1px solid #eee;
+  padding: 0.25em 1em;
+  }
+
+.tab2 table th {
+  opacity: 1;
+  background-color:#ff6600;
+  vertical-align:middle;
+}  
+.fonth2 {font-size: 3em;}
+.fonth3 {font-size: 2.4em;}
+
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://eueung.github.io/EL5244/mfizz22/font-mfizz.css"> 
+    <!-- <link rel="stylesheet" href="mfizz22/font-mfizz.css"> -->
+  </head>
+  <body>
+    <textarea id="source">
+
+
+class: split-60 nopadding
+background-image: url(https://cloud.githubusercontent.com/assets/4231611/11863114/ba560c34-a4c3-11e5-97bd-c3d86d9540e1.jpg)
+
+.column_t2[.vmiddle.nopadding[
+.shadelight[.boxtitle2[
+# React + Flux
+
+### [Eueung Mulyana](https://github.com/eueung)
+### http://eueung.github.io/js/react
+#### JS CodeLabs | [Attribution-ShareAlike CC BY-SA](https://creativecommons.org/licenses/by-sa/4.0/)
+#### 
+]]
+]]
+.column_t2.center[.vmiddle[
+.fgtransparent[
+# <i class="icon-javascript fa-5x"></i>
+]
+]]
+
+---
+class: column_t1 middle
+
+.fonth3[
+.tab1.fullwidth[
+| Agenda   |
+|:-------------:|
+| React Basics #1|
+| React Basics #2|
+| Flux |
+]]
+
+
+---
+class: split-30 nopadding
+background-image: url(https://cloud.githubusercontent.com/assets/4231611/11863114/ba560c34-a4c3-11e5-97bd-c3d86d9540e1.jpg)
+
+.column_t2.center[.vmiddle[
+.fgtransparent[
+# <i class="icon-javascript fa-4x"></i>
+]
+]]
+.column_t2[.vmiddle.nopadding[
+.shadelight[.boxtitle1[
+# React Basics #1
+### [A JavaScript library for building UIs | React](https://facebook.github.io/react/)
+]]
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t2[.vmiddle[
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello React!</title>
+*   <script src="react-0.14.5/react.js"></script>
+*   <script src="react-0.14.5/react-dom.js"></script>
+*   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+*   <script type="text/babel">
+      ReactDOM.render(
+        <h1>Hello, world!</h1>,
+        document.getElementById('example')
+      );
+*   </script>
+  </body>
+</html>
+```
+
+]]
+.column_t1[.vmiddle[
+# Render @Browser
+### hello-00-A.html
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t1[.vmiddle[
+# Render @Browser
+### hello-01-B.html
+### src/hello-01.js
+
+]]
+.column_t2[.vmiddle[
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello React!</title>
+*   <script src="react-0.14.5/react.js"></script>
+*   <script src="react-0.14.5/react-dom.js"></script>
+*   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+*   <script type="text/babel" src="src/hello-01.js"></script>
+  </body>
+</html>
+```
+
+```
+ReactDOM.render(
+  <h1>Hello, world!</h1>,
+  document.getElementById('example')
+);
+```
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t2[.vmiddle[
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello React!</title>
+    <script src="react-0.14.5/react.js"></script>
+    <script src="react-0.14.5/react-dom.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+*   <script src="build/hello-02.js"></script>
+  </body>
+</html>
+```
+
+```
+*# src/hello-02.js (JSX)
+ReactDOM.render(
+  <h1>Hello, world!</h1>,
+  document.getElementById('example')
+);
+
+*# build/hello-02.js (compiled)
+ReactDOM.render(React.createElement(
+  'h1',
+  null,
+  'Hello, world!'
+), document.getElementById('example'));
+```
+
+]]
+.column_t1[.vmiddle[
+# Precompile
+## JSX to vanilla JS
+
+```bash
+npm install -g babel-cli 
+*npm install -g babel-preset-react 
+npm install -g babel-preset-es2015
+```
+
+```bash
+*$> babel --presets react hello-02.js --out-dir=../build
+hello-02.js -> ..\build\hello-02.js
+```
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t1[.vmiddle[
+## .bluelight[this.props]
+#### &nbsp;
+
+.figstyle1[
+![](images/fig01.jpg)
+]
+
+]]
+.column_t2[.vmiddle[
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello React!</title>
+    <script src="react-0.14.5/react.js"></script>
+    <script src="react-0.14.5/react-dom.js"></script>
+*   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+*   <script type="text/babel" src="src/hello-03.js"></script>
+  </body>
+</html>
+```
+
+```
+var HelloMessage = React.createClass({
+  render: function() {
+*   return <div>Hello {this.props.name}</div>;
+  }
+});
+
+*ReactDOM.render(<HelloMessage name="John" />, document.getElementById('example'));
+```
+
+.center[hello-03.js]
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t2[.vmiddle[
+
+```
+var Timer = React.createClass({
+  getInitialState: function() {
+    return {secondsElapsed: 0};
+  },
+  tick: function() {
+*   this.setState({secondsElapsed: this.state.secondsElapsed + 1});
+  },
+* componentDidMount: function() {
+    this.interval = setInterval(this.tick, 1000);
+  },
+* componentWillUnmount: function() {
+    clearInterval(this.interval);
+  },
+  render: function() {
+    return (
+*     <div>Seconds Elapsed: {this.state.secondsElapsed}</div>
+    );
+  }
+});
+
+ReactDOM.render(<Timer />, document.getElementById('example'));
+
+```
+
+.center[hello-04.js]
+
+]]
+.column_t1[.vmiddle[
+
+## .bluelight[this.state]
+#### &nbsp;
+
+.figstyle1[
+![](images/fig02.jpg)
+]
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t1[.vmiddle[
+## TodoApp
+
+```
+*var TodoList = React.createClass({
+  render: function() {
+    var createItem = function(item) {
+      return <li key={item.id}>{item.text}</li>;
+    };
+    return <ul>{this.props.items.map(createItem)}</ul>;
+  }
+});
+```
+
+.center[hello-05.js]
+
+]]
+.column_t2[.vmiddle[
+
+```
+*var TodoApp = React.createClass({
+* getInitialState: function() {
+    return {items: [], text: ''};
+  },
+* onChange: function(e) {
+    this.setState({text: e.target.value});
+  },
+* handleSubmit: function(e) {
+    e.preventDefault();
+    var nextItems = this.state.items.concat([{text: this.state.text, id: Date.now()}]);
+    var nextText = '';
+    this.setState({items: nextItems, text: nextText});
+  },
+* render: function() {
+    return (
+      <div>
+        <h3>TODO</h3>
+*       <TodoList items={this.state.items} />
+        <form onSubmit={this.handleSubmit}>
+          <input onChange={this.onChange} value={this.state.text} />
+          <button>{'Add #' + (this.state.items.length + 1)}</button>
+        </form>
+      </div>
+    );
+  }
+});
+
+ReactDOM.render(<TodoApp />, document.getElementById('example'));
+```
+
+]]
+
+---
+class: column_t1 middle 
+
+.figstyle1[
+![](images/fig03.jpg)
+]
+
+.center[TodoApp | hello-05.js]
+
+---
+class: split-50 nopadding 
+
+.column_t2[.vmiddle[
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello React!</title>
+    <script src="react-0.14.5/react.js"></script>
+    <script src="react-0.14.5/react-dom.js"></script>
+
+*   <script src="https://facebook.github.io/react/js/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel" src="src/hello-06.js"></script>
+  </body>
+</html>
+```
+.center[hello-06.html]
+
+]]
+.column_t1[.vmiddle[
+# MarkdownEditor
+### A Component Using External Plugins
+#### &nbsp;
+
+.figstyle1[
+![](images/fig04.jpg)
+]
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t1[.vmiddle[
+### hello-06.js
+
+
+]]
+.column_t2[.vmiddle[
+
+```
+var MarkdownEditor = React.createClass({
+* getInitialState: function() {
+    return {value: 'Type some *markdown* here!'};
+  },
+* handleChange: function() {
+*   this.setState({value: this.refs.textarea.value});
+  },
+* rawMarkup: function() {
+    return { __html: marked(this.state.value, {sanitize: true}) };
+  },
+* render: function() {
+    return (
+      <div className="MarkdownEditor">
+        <h3>Input</h3>
+        <textarea
+          onChange={this.handleChange}
+          ref="textarea"
+          defaultValue={this.state.value} />
+        <h3>Output</h3>
+        <div
+          className="content"
+          dangerouslySetInnerHTML={this.rawMarkup()}
+        />
+      </div>
+    );
+  }
+});
+
+ReactDOM.render(<MarkdownEditor />, document.getElementById('example'));
+```
+
+]]
+
+---
+class: split-30 nopadding
+background-image: url(https://cloud.githubusercontent.com/assets/4231611/11863114/ba560c34-a4c3-11e5-97bd-c3d86d9540e1.jpg)
+
+.column_t2.center[.vmiddle[
+.fgtransparent[
+# <i class="icon-javascript fa-4x"></i>
+]
+]]
+.column_t2[.vmiddle.nopadding[
+.shadelight[.boxtitle1[
+# React Basics #2
+### Starter Kit [Examples](https://facebook.github.io/react/docs/getting-started.html)
+]]
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t2[.vmiddle[
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Basic Example</title>
+*   <link rel="stylesheet" href="../shared/css/base.css" />
+  </head>
+  <body>
+    <h1>Basic Example</h1>
+    
+*   <div id="container">
+      <p> To install React, follow the instructions on <a href="https://github.com/facebook/react/">GitHub</a>. </p>
+      <p> If you can see this, React is not working right. If you checked out the source from GitHub make sure to run <code>grunt</code>. </p>
+*   </div>
+
+    <h4>Example Details</h4>
+    <p>This is written in vanilla JavaScript (without JSX) and transformed in the browser.</p>
+    <p> Learn more about React at <a href="https://facebook.github.io/react" target="_blank">facebook.github.io/react</a>. </p>
+    
+*   <script src="../../react-0.14.5/react.js"></script>
+*   <script src="../../react-0.14.5/react-dom.js"></script>
+*   <script> ... </script>
+  </body>
+</html>
+
+```
+
+]]
+.column_t1[.vmiddle[
+## Example #1
+#### React with Vanilla JS
+
+```
+<script>
+* var ExampleApplication = React.createClass({
+    render: function() {
+      var elapsed = Math.round(this.props.elapsed  / 100);
+      var seconds = elapsed / 10 + (elapsed % 10 ? '' : '.0' );
+      var message =
+        'React has been successfully running for ' + seconds + ' seconds.';
+
+      return React.DOM.p(null, message);
+    }
+  });
+
+  // Call React.createFactory instead of directly call ExampleApplication({...}) in React.render
+* var ExampleApplicationFactory = React.createFactory(ExampleApplication);
+
+  var start = new Date().getTime();
+  setInterval(function() {
+    ReactDOM.render(
+      ExampleApplicationFactory({elapsed: new Date().getTime() - start}),
+*     document.getElementById('container')
+    );
+  }, 50);
+</script>
+```
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t1[.vmiddle[
+## Example #2
+#### React with JSX
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Basic Example with JSX</title>
+    <link rel="stylesheet" href="../shared/css/base.css" />
+  </head>
+  <body>
+    <h1>Basic Example with JSX</h1>
+    <div id="container">
+      <p> To install React, follow the instructions on <a href="https://github.com/facebook/react/">GitHub</a>. </p>
+      <p> If you can see this, React is not working right. If you checked out the source from GitHub make sure to run <code>grunt</code>. </p>
+    </div>
+
+    <h4>Example Details</h4>
+    <p>This is written with JSX and transformed in the browser.</p>
+    <p>Learn more about React at <a href="https://facebook.github.io/react" target="_blank">facebook.github.io/react</a>.</p>
+
+    <script src="../../react-0.14.5/react.js"></script>
+    <script src="../../react-0.14.5/react-dom.js"></script>
+*   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+    
+*   <script type="text/babel"> ... </script>
+  </body>
+</html>
+
+```
+
+]]
+.column_t2[.vmiddle[
+
+```
+<script type="text/babel">
+* var ExampleApplication = React.createClass({
+    render: function() {
+      var elapsed = Math.round(this.props.elapsed  / 100);
+      var seconds = elapsed / 10 + (elapsed % 10 ? '' : '.0' );
+      var message =
+        'React has been successfully running for ' + seconds + ' seconds.';
+
+*     return <p>{message}</p>;
+    }
+* });
+  var start = new Date().getTime();
+* setInterval(function() {
+    ReactDOM.render(
+*     <ExampleApplication elapsed={new Date().getTime() - start} />,
+      document.getElementById('container')
+    );
+* }, 50);
+</script>
+```
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t2[.vmiddle[
+# Example #1
+#### &nbsp;
+
+.figstyle1[
+![](images/fig05.jpg)
+]
+
+]]
+.column_t1[.vmiddle[
+# Example #2
+#### &nbsp;
+
+.figstyle1[
+![](images/fig06.jpg)
+]
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t1[.vmiddle[
+## Example #3
+#### Basic Click Counter (JSX)
+#### &nbsp;
+
+.figstyle1[
+![](images/fig07.jpg)
+]
+
+]]
+.column_t2[.vmiddle[
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Basic Example with Click Counter</title>
+    <script src="../../react-0.14.5/react.js"></script>
+    <script src="../../react-0.14.5/react-dom.js"></script>
+*   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+  </head>
+  <body>
+    <div id="message" align="center"></div>
+
+*   <script type="text/babel">
+*     var Counter = React.createClass({
+*       getInitialState: function () {
+          return { clickCount: 0 };
+        },
+*       handleClick: function () {
+          this.setState(function(state) {
+            return {clickCount: state.clickCount + 1};
+          });
+        },
+*       render: function () {
+          return (<h2 onClick={this.handleClick}>Click me! Number of clicks: {this.state.clickCount}</h2>);
+        }
+      });
+*     ReactDOM.render( <Counter />, document.getElementById('message') );
+    </script>
+</body></html>
+```
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t2[.vmiddle[
+
+```html
+<!DOCTYPE html>
+<html>
+  <head> ... </head>
+
+  <body>
+    ...
+
+    <script src="../../react-0.14.5/react.js"></script>
+    <script src="../../react-0.14.5/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+*   <script type="text/babel" src="example.js"></script>
+  </body>
+</html>
+```
+.figstyle1[
+![](images/fig08.jpg)
+]
+
+]]
+.column_t1[.vmiddle[
+## Example #4
+#### External JSX
+#### &nbsp;
+
+```
+var ExampleApplication = React.createClass({
+  render: function() {
+    var elapsed = Math.round(this.props.elapsed  / 100);
+    var seconds = elapsed / 10 + (elapsed % 10 ? '' : '.0' );
+    var message = 'React has been successfully running for ' + seconds + ' seconds.';
+
+    return <p>{message}</p>;
+  }
+});
+
+var start = new Date().getTime();
+
+setInterval(function() {
+  ReactDOM.render( <ExampleApplication elapsed={new Date().getTime() - start} />, document.getElementById('container') );
+}, 50);
+```
+
+.center[example.js]
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t1[.vmiddle[
+## Example #5
+#### Precompiled JSX (Vanilla JS @Browser)
+#### &nbsp;
+
+.figstyle1[
+![](images/fig09.jpg)
+]
+
+```bash
+*$> babel --presets react example.js --out-dir=build
+example.js -> build\example.js
+```
+
+]]
+.column_t2[.vmiddle[
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Basic Example with Precompiled JSX</title>
+    <link rel="stylesheet" href="../shared/css/base.css" />
+  </head>
+  <body>
+    <h1>Basic Example with Precompiled JSX</h1>
+    <div id="container">
+      <p> If you can see this, React is not running. Try running: </p>
+      <pre> ... </pre>
+    </div>
+
+    <h4>Example Details</h4>
+    <p>This is written with JSX in a separate file and precompiled to vanilla JS by running:</p>
+    <pre>
+    npm install -g babel
+    cd examples/basic-jsx-precompile/
+    babel example.js --out-dir=build
+    </pre>
+    <p> Learn more about React at <a href="https://facebook.github.io/react" target="_blank">facebook.github.io/react</a>. </p>
+
+*   <script src="../../react-0.14.5/react.js"></script>
+*   <script src="../../react-0.14.5/react-dom.js"></script>
+*   <script src="build/example.js"></script>
+  </body>
+</html>
+```
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t2[.vmiddle[
+## Example #6
+#### JSX and Harmony (ES6|ES2015)
+
+```
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Basic Example with JSX and ES6 features</title>
+    <link rel="stylesheet" href="../shared/css/base.css" />
+  </head>
+  <body>
+    <h1>Basic Example with JSX and ES6 features</h1>
+    <div id="container">
+      <p>To install React, follow the instructions on <a href="https://github.com/facebook/react/">GitHub</a>. </p>
+      <p> If you can see this, React is not working right. If you checked out the source from GitHub make sure to run <code>grunt</code>. </p>
+    </div>
+
+    <h4>Example Details</h4>
+    <p>This is written with JSX with Harmony (ES6) syntax and transformed in the browser.</p>
+    <p>Learn more about React at <a href="https://facebook.github.io/react" target="_blank">facebook.github.io/react</a>.</p>
+
+    <script src="../../react-0.14.5/react.js"></script>
+    <script src="../../react-0.14.5/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+*   <script type="text/babel"> ... </script>
+  </body>
+</html>
+
+```
+
+]]
+.column_t1[.vmiddle[
+
+```
+<script type="text/babel">
+* class ExampleApplication extends React.Component {
+*   render() {
+      var elapsed = Math.round(this.props.elapsed  / 100);
+      var seconds = elapsed / 10 + (elapsed % 10 ? '' : '.0' );
+      var message = `React has been successfully running for ${seconds} seconds.`;
+
+      return <p>{message}</p>;
+    }
+  }
+  var start = new Date().getTime();
+* setInterval(() => {
+    ReactDOM.render(<ExampleApplication elapsed={new Date().getTime() - start} />, document.getElementById('container'));
+  }, 50);
+</script>
+```
+
+.figstyle1[
+![](images/fig10.jpg)
+]
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t1[.vmiddle[
+## Example #7
+#### CommonJS & Browserify (Bundled Vanilla JS @ Browser)
+
+```
+{
+  "name": "react-basic-commonjs-example",
+  "description": "Basic example of using React with CommonJS",
+* "main": "index.js",
+  "dependencies": {
+    "babelify": "^6.3.0",
+    "react": "^0.14.0-rc1",
+    "react-dom": "^0.14.0-rc1",
+    "watchify": "^3.4.0"
+  },
+  "scripts": {
+*   "start": "watchify index.js -v -t babelify -o bundle.js"
+  }
+}
+```
+
+.center[package.json]
+
+]]
+.column_t2[.vmiddle[
+
+.figstyle1[
+![](images/fig11.jpg)
+]
+
+
+```
+*npm install
+npm start
+```
+
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t2[.vmiddle[
+
+.center[index.js]
+
+```
+'use strict';
+
+*var React = require('react');
+*var ReactDOM = require('react-dom');
+
+var ExampleApplication = React.createClass({
+  render: function() {
+    var elapsed = Math.round(this.props.elapsed  / 100);
+    var seconds = elapsed / 10 + (elapsed % 10 ? '' : '.0' );
+    var message =
+      'React has been successfully running for ' + seconds + ' seconds.';
+
+    return <p>{message}</p>;
+  }
+});
+
+var start = new Date().getTime();
+
+setInterval(function() {
+  ReactDOM.render(
+    <ExampleApplication elapsed={new Date().getTime() - start} />,
+    document.getElementById('container')
+  );
+}, 50);
+```
+
+]]
+.column_t1[.vmiddle[
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Basic CommonJS Example with Browserify</title>
+    <link rel="stylesheet" href="../shared/css/base.css" />
+  </head>
+  <body>
+    <h1>Basic CommonJS Example with Browserify</h1>
+    <div id="container">
+      <p>To install React, follow the instructions on <a href="https://github.com/facebook/react/">GitHub</a>. </p>
+      <p>If you can see this, React is not working right. If you checked out the source from GitHub make sure to run <code>grunt</code>.</p>
+    </div>
+
+    <h4>Example Details</h4>
+    <p>This is written with JSX in a CommonJS module and precompiled to vanilla JS by running:</p>
+    <pre>npm start</pre>
+    <p>Learn more about React at <a href="https://facebook.github.io/react" target="_blank">facebook.github.io/react</a>.</p>
+    
+*   <script src="bundle.js"></script>
+  </body>
+</html>
+```
+
+.center[index.html]
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t1[.vmiddle[
+## Example #8
+####&nbsp;
+
+.figstyle1[
+![](images/fig14.jpg)
+]
+
+]]
+.column_t2[.vmiddle[
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Quadratic Formula Calculator</title>
+    <link rel="stylesheet" href="../shared/css/base.css" />
+  </head>
+  <body>
+    <h1>Quadratic Formula Calculator</h1>
+    <div id="container">
+      <p>If you can see this, React is not working right. This is probably because you&apos;re viewing this on your file system instead of a web server. Try running <pre> python -m SimpleHTTPServer </pre> and going to <a href="http://localhost:8000/">http://localhost:8000/</a>. </p>
+    </div>
+
+    <h4>Example Details</h4>
+    <p>This is written with JSX in a separate file and transformed in the browser.</p>
+    <p>Learn more about React at <a href="https://facebook.github.io/react" target="_blank">facebook.github.io/react</a>. </p>
+
+    <script src="../../react-0.14.5/react.js"></script>
+    <script src="../../react-0.14.5/react-dom.js"></script>
+*   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+*   <script type="text/babel" src="example.js"></script>
+  </body>
+</html>
+```
+
+.center[index.html]
+
+]]
+
+---
+class: split-70 nopadding 
+
+.column_t2[.vmiddle[
+
+```
+var QuadraticCalculator = React.createClass({
+  getInitialState: function() { return { a: 1, b: 3, c: -4 }; },
+
+* handleInputChange: function(key, event) {
+    var partialState = {};
+    partialState[key] = parseFloat(event.target.value);
+    this.setState(partialState);
+  },
+
+  render: function() {
+    var a = this.state.a; var b = this.state.b; var c = this.state.c;
+    var root = Math.sqrt(Math.pow(b, 2) - 4 * a * c);
+    var denominator = 2 * a;
+    var x1 = (-b + root) / denominator;
+    var x2 = (-b - root) / denominator;
+    return (
+      <div>
+        <strong> <em>ax</em><sup>2</sup> + <em>bx</em> + <em>c</em> = 0 </strong>
+        <h4>Solve for <em>x</em>:</h4>
+        <p>
+*         <label> a: <input type="number" value={a} onChange={this.handleInputChange.bind(null, 'a')} /></label><br />
+*         <label> b: <input type="number" value={b} onChange={this.handleInputChange.bind(null, 'b')} /></label><br />
+*         <label> c: <input type="number" value={c} onChange={this.handleInputChange.bind(null, 'c')} /></label><br />
+          x: <strong>{x1}, {x2}</strong>
+        </p>
+      </div>
+    );
+  }
+});
+
+ReactDOM.render( <QuadraticCalculator />, document.getElementById('container') );
+```
+
+]]
+.column_t1[.vmiddle[
+### example.js
+
+]]
+
+---
+class: split-30 nopadding 
+
+.column_t1[.vmiddle[
+## Example #9
+### WebComponents
+
+
+]]
+.column_t2[.vmiddle[
+
+.figstyle1[
+![](images/fig15.jpg)
+]
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t2[.vmiddle[
+
+```
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv='Content-type' content='text/html; charset=utf-8'>
+    <title>Basic Example with WebComponents</title>
+    <link rel="stylesheet" href="../shared/css/base.css" />
+  </head>
+  <body>
+    <h1>Basic Example with WebComponents</h1>
+    <div id="container">
+      <p>To install React, follow the instructions on <a href="http://www.github.com/facebook/react/">GitHub</a>.</p>
+      <p>If you can see this, React is not working right. If you checked out the source from GitHub make sure to run <code>grunt</code>.</p>
+    </div><br /><br />
+    
+    <h4>Example Details</h4>
+    <p>This example demonstrates WebComponent/ReactComponent interoperability by rendering a ReactComponent, which renders a WebComponent, which renders another ReactComponent in the WebComponent's shadow DOM.</p>
+    <p>Learn more about React at <a href="http://facebook.github.io/react" target="_blank">facebook.github.io/react</a>.</p>
+    
+*   <script src="../shared/thirdparty/webcomponents.js"></script>
+    <script src="../../react-0.14.5/react.js"></script>
+    <script src="../../react-0.14.5/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+
+*   <script type="text/babel"> ...  </script>
+  </body>
+</html>
+
+```
+
+]]
+.column_t1[.vmiddle[
+### index.html
+
+```
+<script type="text/babel">
+* var proto = Object.create(HTMLElement.prototype, {
+    createdCallback: {
+      value: function() {
+        var mountPoint = document.createElement('span');
+        this.createShadowRoot().appendChild(mountPoint);
+
+        var name = this.getAttribute('name');
+        var url = 'https://www.google.com/search?q=' + encodeURIComponent(name);
+        ReactDOM.render(<a href={url}>{name}</a>, mountPoint);
+      }
+    }
+  });
+* document.registerElement('x-search', {prototype: proto});
+
+* class HelloMessage extends React.Component {
+    render() {
+*     return <div>Hello <x-search name={this.props.name} />!</div>;
+    }
+  }
+
+* // Mount React Component (which uses WebComponent which uses React)
+  var container = document.getElementById('container');
+* ReactDOM.render(<HelloMessage name="Jim Sproch" />, container);
+</script>
+```
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t1[.vmiddle[
+## Example #10
+#### &nbsp;
+
+.figstyle1[
+![](images/fig16.jpg)
+]
+
+]]
+.column_t2[.vmiddle[
+
+```html
+<div id="container">
+*<span class="animateExample" data-reactid=".0">
+  <div class="animateItem" style="left: 0px; background: red;" data-reactid=".0.$=1$45">45</div>
+* <div class="animateItem" style="left: 128px; background: gray;" data-reactid=".0.$=1$46">46</div>
+  <div class="animateItem" style="left:256px;background:blue;" data-reactid=".0.$=1$47">47</div>
+</span>
+</div>
+```
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t2[.vmiddle[
+## index.html
+
+```
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Example with Transitions</title>
+    <link rel="stylesheet" href="../shared/css/base.css" />
+*   <link rel="stylesheet" href="transition.css" />
+  </head>
+  <body>
+    <h1>Example with Transitions</h1>
+    <div id="container">
+      <p>To install React, follow the instructions on <a href="https://github.com/facebook/react/">GitHub</a>. </p>
+      <p>If you can see this, React is not working right. If you checked out the source from GitHub make sure to run <code>grunt</code>.</p>
+    </div>
+
+    <h4>Example Details</h4>
+    <p>This is written with JSX and transformed in the browser.</p>
+    <p>Learn more about React at <a href="https://facebook.github.io/react" target="_blank">facebook.github.io/react</a>.</p>
+
+*   <script src="../../react-0.14.5/react-with-addons.js"></script>
+    <script src="../../react-0.14.5/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+
+*   <script type="text/babel"> ... </script>
+  </body>
+</html>
+
+```
+
+]]
+.column_t1[.vmiddle[
+
+```
+<script type="text/babel">
+* var CSSTransitionGroup = React.addons.CSSTransitionGroup;
+  var INTERVAL = 2000;
+
+  var AnimateDemo = React.createClass({
+    getInitialState: function() { return {current: 0}; },
+*   componentDidMount: function() { this.interval = setInterval(this.tick, INTERVAL); },
+*   componentWillUnmount: function() { clearInterval(this.interval); },
+*   tick: function() { this.setState({current: this.state.current + 1}); },
+
+    render: function() {
+      var children = [];
+      var pos = 0;
+      var colors = ['red', 'gray', 'blue'];
+      for (var i = this.state.current; i < this.state.current + colors.length; i++) {
+*       var style = { left: pos * 128, background: colors[i % colors.length] };
+        pos++;
+*       children.push(<div key={i} className="animateItem" style={style}>{i}</div>);
+      }
+      return (
+*       <CSSTransitionGroup className="animateExample" transitionEnterTimeout={250} transitionLeaveTimeout={250}  transitionName="example">
+*         {children}
+*       </CSSTransitionGroup>
+      );
+    }
+  });
+
+  ReactDOM.render(<AnimateDemo />, document.getElementById('container'));
+</script>
+```
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t1[.vmiddle[
+## transition.css
+
+```css
+.example-enter,
+.example-leave {
+  -webkit-transition: all .25s;
+  transition: all .25s;
+}
+
+.example-enter,
+.example-leave.example-leave-active {
+  opacity: 0.01;
+}
+
+.example-leave.example-leave-active {
+  margin-left: -128px;
+}
+
+.example-enter {
+  margin-left: 128px;
+}
+
+.example-enter.example-enter-active,
+.example-leave {
+  margin-left: 0;
+  opacity: 1;
+}
+```
+
+]]
+.column_t2[.vmiddle[
+
+```css
+*.animateExample {
+  display: block;
+  height: 128px;
+  position: relative;
+  width: 384px;
+}
+
+*.animateItem {
+  color: white;
+  font-size: 36px;
+  font-weight: bold;
+  height: 128px;
+  line-height: 128px;
+  position: absolute;
+  text-align: center;
+  -webkit-transition: all .25s; /* TODO: make this a move animation */
+  transition: all .25s; /* TODO: make this a move animation */
+  width: 128px;
+}
+```
+]]
+
+
+---
+class: split-30 nopadding
+background-image: url(https://cloud.githubusercontent.com/assets/4231611/11863114/ba560c34-a4c3-11e5-97bd-c3d86d9540e1.jpg)
+
+.column_t2.center[.vmiddle[
+.fgtransparent[
+# <i class="icon-javascript fa-4x"></i>
+]
+]]
+.column_t2[.vmiddle.nopadding[
+.shadelight[.boxtitle1[
+# Flux
+### [Easy Flux Example | @tonyspiro](http://tonyspiro.com/building-a-simple-react-application-using-the-flux-pattern/)
+]]
+]]
+
+---
+class: split-30 nopadding 
+
+.column_t2[.vmiddle[
+### Structure
+
+- **app.js**
+- stores/**ListStore.js**
+- dispatcher/**AppDispatcher.js**
+- components/
+  - **AppRoot.jsx**
+  - **NewItemForm.jsx**
+
+]]
+.column_t1[.vmiddle[
+
+.figstyle1[
+![](images/fig12.jpg)
+]
+
+]]
+
+---
+class: column_t1 middle 
+
+.figstyle1[
+![](images/fig13.jpg)
+]
+
+---
+class: split-70 nopadding 
+
+.column_t2[.vmiddle[
+
+```
+{
+  ...,
+  "dependencies": {
+    "babelify": "^7.2.0",
+*   "babel-preset-react": "^6.3.13",
+*   "babel-preset-es2015": "^6.3.13",
+    "browserify": "^12.0.1",
+    "events": "^1.1.0",
+    "flux": "^2.1.1",
+    "gulp": "^3.9.0",
+    "gulp-rename": "^1.2.1",
+    "gulp-uglify": "^1.5.1",
+    "lodash": "^3.10.1",
+    "react": "^0.14.5",
+*   "react-dom": "^0.14.5",
+    "run-sequence": "^1.1.5",
+    "vinyl-source-stream": "^1.1.0"
+  },
+  "devDependencies": {},
+  ...
+}
+```
+
+```bash
+*npm install -g react react-dom babelify browserify flux lodash events
+*npm install -g babel-preset-react babel-preset-es2015
+npm install -g vinyl-source-stream gulp gulp-uglify gulp-rename run-sequence
+```
+
+
+]]
+.column_t1[.vmiddle[
+# package.json
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t1[.vmiddle[
+
+```
+var gulp = require('gulp');
+var browserify = require('browserify');
+var babelify = require('babelify');
+var source = require('vinyl-source-stream');
+var uglify = require('gulp-uglify');
+var rename = require('gulp-rename');
+var runSequence = require('run-sequence');
+ 
+gulp.task('build', function () {
+  return browserify({
+    entries: 'app.js',
+    extensions: ['.jsx'],
+    debug: true
+  })
+* .transform(babelify, {presets: ['es2015','react']})
+  .bundle()
+  .pipe(source('bundle.js'))
+  .pipe(gulp.dest('dist'));
+});
+
+gulp.task('compress', function() {
+  return gulp.src('./dist/bundle.js')
+    .pipe(uglify())
+    .pipe(rename({suffix: '.min'}))
+    .pipe(gulp.dest('dist'));
+});
+
+gulp.task('default', function(cb) {
+  runSequence('build','compress', cb);
+});
+```
+
+]]
+.column_t2[.vmiddle[
+# gulpfile.js
+
+```
+gulp.task('watch', function () {
+  gulp.watch("./*.js", ['default']);
+  gulp.watch("./components/*.jsx", ['default']);
+  gulp.watch("./dispatcher/*.js", ['default']);
+  gulp.watch("./stores/*.js", ['default']);
+});
+```
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t2[.vmiddle[
+# index.html
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Easy Flux Example</title>
+</head>
+<body>
+  <h1>Easy Flux Example</h1>
+  <div id="app-root"></div>
+* <script src="dist/bundle.min.js"></script>
+</body>
+</html>
+```
+
+```bash
+*$> gulp
+[09:25:53] Using gulpfile ./gulpfile.js
+[09:25:53] Starting 'default'...
+[09:25:53] Starting 'build'...
+[09:25:59] Finished 'build' after 5.48 s
+[09:25:59] Starting 'compress'...
+[09:26:04] Finished 'compress' after 4.99 s
+[09:26:04] Finished 'default' after 10 s
+```
+
+]]
+.column_t1[.vmiddle[
+# app.js
+
+```
+import React from 'react';
+*import ReactDOM from 'react-dom';
+import AppRoot from './components/AppRoot';
+
+*ReactDOM.render(<AppRoot />, document.getElementById('app-root'));
+```
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t1[.vmiddle[
+## ListStore.js
+
+```
+import {EventEmitter} from 'events';
+import _ from 'lodash';
+//-----------------------------------
+*let ListStore = _.extend({}, EventEmitter.prototype, {
+* items: [ { name: 'Item 1', id: 0 }, { name: 'Item 2', id: 1 } ],
+
+  getItems: function(){ return this.items; },
+  addItem: function(new_item){ this.items.push(new_item); },
+
+  removeItem: function(item_id){
+    let items = this.items;
+    _.remove(items,(item) => { return item_id == item.id; });
+    this.items = items;
+  },
+
+* emitChange: function(){ this.emit('change'); },
+* addChangeListener: function(callback){ this.on('change', callback); },
+* removeChangeListener: function(callback) { this.removeListener('change', callback); }
+});
+//-----------------------------------
+export default ListStore;
+```
+
+]]
+.column_t2[.vmiddle[
+## AppDispatcher.js
+
+```
+import {Dispatcher} from 'flux';
+import ListStore from '../stores/ListStore';
+//-----------------------------------
+let AppDispatcher = new Dispatcher();
+//-----------------------------------
+*AppDispatcher.register((payload) => {
+  let action = payload.action;
+  let new_item = payload.new_item;
+  let id = payload.id;
+
+* switch(action) {
+*   case 'add-item': ListStore.addItem(new_item); break;
+*   case 'remove-item': ListStore.removeItem(id); break;
+*   default: return true;
+* }
+
+* ListStore.emitChange();
+* return true;
+});
+//-----------------------------------
+export default AppDispatcher;
+```
+
+]]
+
+---
+class: split-70 nopadding 
+
+.column_t2[.vmiddle[
+
+```
+import React from 'react';
+import ListStore from '../stores/ListStore';
+import AppDispatcher from '../dispatcher/AppDispatcher';
+import NewItemForm from './NewItemForm';
+//-----------------------------------
+*let getListState = () => { return { items: ListStore.getItems() }; }
+//-----------------------------------
+class AppRoot extends React.Component {
+  constructor() { super(); this.state = getListState(); }
+  _onChange() { this.setState(getListState()); }
+
+* componentDidMount()    { ListStore.addChangeListener(this._onChange.bind(this)); }
+* componentWillUnmount() { ListStore.removeChangeListener(this._onChange.bind(this)); }
+
+  removeItem(e){
+    let id = e.target.dataset.id;
+*   AppDispatcher.dispatch({ action: 'remove-item', id: id });
+  }
+
+  render(){
+    let _this = this;
+    let items = ListStore.getItems();
+    let itemHtml = items.map(( listItem ) => {
+*     return <li key={ listItem.id }> { listItem.name } <button onClick={ _this.removeItem } data-id={ listItem.id }>×</button></li>;
+    });
+*   return ( <div> <ul> { itemHtml } </ul> <NewItemForm /> </div> );
+  }
+}
+//-----------------------------------
+export default AppRoot;
+```
+
+]]
+.column_t1[.vmiddle[
+# AppRoot.jsx
+
+]]
+
+---
+class: split-30 nopadding 
+
+.column_t1[.vmiddle[
+### NewItemForm.jsx
+
+]]
+.column_t2[.vmiddle[
+
+```
+import React from 'react';
+import ReactDOM from 'react-dom';
+import AppDispatcher from '../dispatcher/AppDispatcher';
+//-----------------------------------
+class NewItemForm extends React.Component {
+  createItem(e){
+    e.preventDefault();
+    let id = guid();
+    
+*   let item_title = ReactDOM.findDOMNode(this.refs.item_title).value.trim();
+*   ReactDOM.findDOMNode(this.refs.item_title).value = '';
+    
+*   AppDispatcher.dispatch({ action: 'add-item', new_item: { id: id, name: item_title } });
+  }
+
+  render(){
+    return <form onSubmit={ this.createItem.bind(this) }> <input type="text" ref="item_title"/> <button>Add new item</button> </form>
+  }
+}
+//-----------------------------------
+function guid() {
+  function s4() { return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1); }
+  return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+}
+//-----------------------------------
+export default NewItemForm;
+```
+
+]]
+
+
+---
+# References
+
+1. [A JavaScript library for building user interfaces | React](https://facebook.github.io/react/)
+1. [Getting Started | React](https://facebook.github.io/react/docs/getting-started.html)
+1. [Building A Simple React Application Using The Flux Pattern: A Step-By-Step Guide](http://tonyspiro.com/building-a-simple-react-application-using-the-flux-pattern/)
+1. [flux/examples/flux-todomvc](https://github.com/facebook/flux/tree/master/examples/flux-todomvc)
+
+---
+class: split-30 nopadding
+background-image: url(https://cloud.githubusercontent.com/assets/4231611/11863114/ba560c34-a4c3-11e5-97bd-c3d86d9540e1.jpg)
+
+.column_t2.center[.vmiddle[
+.fgtransparent[
+# <i class="icon-javascript fa-4x"></i>
+]
+]]
+.column_t2[.vmiddle.nopadding[
+.shadelight[.boxtitle1[
+# END
+
+### [Eueung Mulyana](https://github.com/eueung)
+### http://eueung.github.io/js/react
+#### JS CodeLabs | [Attribution-ShareAlike CC BY-SA](https://creativecommons.org/licenses/by-sa/4.0/)
+#### 
+]]
+]]
+
+
+
+    </textarea>
+    <script src="https://gnab.github.io/remark/downloads/remark-0.12.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create({highlightLanguage:'javascript', highlightStyle: 'tomorrow', highlightLines: true});
+    </script>
+  </body>
+</html>
