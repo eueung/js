@@ -1,0 +1,36 @@
+{
+  "name": "easy-flux-example",
+  "version": "1.0.0",
+  "description": "An easy React application that demonstrates basic usage of the Flux architecture pattern.  For more info on Flux, visit the [official Flux website](https://facebook.github.io/flux/).",
+  "main": "app.js",
+  "dependencies": {
+    "babelify": "^7.2.0",
+    "babel-preset-react": "^6.3.13",
+    "babel-preset-es2015": "^6.3.13",
+    "browserify": "^12.0.1",
+    "events": "^1.1.0",
+    "flux": "^2.1.1",
+    "gulp": "^3.9.0",
+    "gulp-rename": "^1.2.1",
+    "gulp-uglify": "^1.5.1",
+    "lodash": "^3.10.1",
+    "react": "^0.14.5",
+    "react-dom": "^0.14.5",
+    "run-sequence": "^1.1.5",
+    "vinyl-source-stream": "^1.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tonyspiro/easy-flux-example.git"
+  },
+  "author": "Tony Spiro <tspiro@tonyspiro.com> (http://tonyspiro.com/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tonyspiro/easy-flux-example/issues"
+  },
+  "homepage": "https://github.com/tonyspiro/easy-flux-example#readme"
+}
